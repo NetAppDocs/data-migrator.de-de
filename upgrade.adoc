@@ -1,0 +1,115 @@
+---
+sidebar: sidebar 
+permalink: upgrade.html 
+keywords: upgrade, control plane, worker vm, upgrade bundle, version update 
+summary: Aktualisieren Sie eine Steuerungsebene, einen Linux-Worker oder einen Windows-Worker in NetApp Data Migrator. 
+---
+= Aktualisieren Sie die Steuerungsebene und die Worker in NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie können eine Steuerungsebene, einen Linux-Worker oder einen Windows-Worker in NetApp Data Migrator aktualisieren.
+
+.Bevor Sie beginnen
+* Alle Jobläufe stoppen und alle Jobs inaktiv setzen.
+* Laden Sie das Upgrade-Bundle (tar.gz-Datei) von der NetApp Support Site herunter und speichern Sie es in Ihrem lokalen Verzeichnis.
+* Stellen Sie sicher, dass die verwendeten Worker online sind. Worker, die während eines Upgrades offline sind, werden nicht aktualisiert.
+
+
+
+
+== Schritt 1: Laden Sie das Upgrade-Paket hoch
+
+Laden Sie das Upgrade-Paket aus Ihrem lokalen Verzeichnis hoch.
+
+.Schritte
+. Melden Sie sich in der NetApp Data Migrator-Benutzeroberfläche an und navigieren Sie dann zur Startseite.
+. Wählen Sie das Hilfesymbol in der oberen rechten Ecke aus.
+. Wählen Sie die Registerkarte *Upgrade*.
+. Wählen Sie *Datei auswählen* aus und wählen Sie dann die Upgrade-Bundle-Datei tar.gz aus.
+. Wählen Sie nach der Dateiauswahl *Hochladen*.
++
+Warten Sie, bis die Meldung erscheint, die bestätigt, dass der Upload und die Validierung abgeschlossen sind.
+
+. Optional können Sie den Vorgang durch Auswahl von *Neu starten* erneut beginnen, um eine andere Datei hochzuladen.
+
+
+
+
+== Schritt 2: Aktualisieren Sie die Steuerungsebene und die Worker
+
+Aktualisieren Sie die Steuerungsebene, gefolgt vom Linux-Worker oder Windows-Worker.
+
+.Schritte
+. Wählen Sie *Upgrade*. Das System beginnt mit der Aktualisierung der Steuerungsebene. Dies dauert etwa fünf bis zehn Minuten.
++
+Während des Upgrades kann die Benutzeroberfläche vorübergehend nicht verfügbar sein, da die Anwendung mit der neuen Version neu gestartet wird. Melden Sie sich wieder an der Benutzeroberfläche an, sobald sie wieder erreichbar ist.
+
+. Nach Abschluss des Upgrades kehren Sie zur Seite *Upgrade* zurück.
+. Vergewissern Sie sich, dass der Upgrade-Status *Success* ist.
+. Nach einem erfolgreichen Upgrade der Steuerungsebene startet das Worker-Upgrade automatisch für alle Online-Worker.
++
+
+NOTE: Die Online-Worker installieren und starten die neue Version automatisch neu. Offline-Worker werden nicht aktualisiert.
+
+. Falls ein Worker-Upgrade nicht automatisch startet, verwenden Sie SSH, um eine Verbindung zum Worker herzustellen und das Upgrade zu starten:
++
+[role="tabbed-block"]
+====
+.Linux-Worker
+--
+[source, cli]
+----
+sudo /opt/datamigrator/staging/<version>/upgrade.sh <version>
+----
+--
+.Windows-Worker
+--
+[source, cli]
+----
+ExecutionPolicy Bypass -File C:\datamigrator\staging\<version>\upgrade.ps1 -Version <version>
+----
+--
+====
+
+
+
+
+== Schritt 3: Protokolle anzeigen und Fehlerbehebung
+
+Zeigen Sie die Protokolle der virtuellen Maschine an, um die Fehlerbehebung bei Problemen zu unterstützen, die während des Upgrades auftreten.
+
+.Schritte
+. Stellen Sie über SSH eine Verbindung zur Control-Plane-VM her und führen Sie den folgenden Befehl aus, um die Protokolle anzuzeigen:
++
+[source, cli]
+----
+tail -f /upgrade/upgrade-<version>.log
+----
+. Stellen Sie über SSH eine Verbindung zur Linux-Worker-VM oder Windows-Worker-VM her und rufen Sie die Protokolle über den folgenden Pfad auf:
++
+[role="tabbed-block"]
+====
+.Linux-Worker
+--
+[source, cli]
+----
+/opt/datamigrator/upgrade.log
+----
+--
+.Windows-Worker
+--
+[source, cli]
+----
+C:\datamigrator\upgrade.log
+----
+--
+====
+. Wenn das Upgrade fehlschlägt, wird das System automatisch auf die vorherige Version zurückgesetzt und die Benutzeroberfläche zeigt den Upgrade-Status als *Failed* an.
++
+Prüfen Sie die Ansible-Protokolle, kontaktieren Sie dann NetApp Support und fügen Sie die Ansible-Protokolle Ihrer Nachricht bei.
+
+

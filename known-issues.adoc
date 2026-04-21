@@ -1,0 +1,252 @@
+---
+sidebar: sidebar 
+permalink: known-issues.html 
+keywords: known issues, workarounds 
+summary: Prüfen Sie die bekannten Probleme und Lösungsansätze für NetApp Data Migrator. 
+---
+= Bekannte Probleme für NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Bekannte Probleme beschreiben Fehler, die die erfolgreiche Nutzung dieser Produktversion verhindern könnten. Lesen Sie diese bekannten Probleme sorgfältig durch.
+
+
+
+== Konfiguration
+
+
+
+=== Zugriffsberechtigungskonflikt bei Verwendung der SID-Zuordnung
+
+NetApp Data Migrator könnte einen `Missing ACE in target` Fehler melden, wenn die SID-Zuordnung verwendet wird. Dieser Fehler weist auf eine Diskrepanz der Zugriffsberechtigungen zwischen Quell- und Zielsystem hin, da die SID-Zuordnung nicht auf der Root-Ebene durchgeführt wurde.
+
+.Problemumgehung
+Stellen Sie die CSV-Zuordnung für die SID-Quelle und das Ziel wie in den folgenden beiden Szenarien dargestellt bereit:
+
+[role="tabbed-block"]
+====
+.Szenario 1
+--
+Geben Sie die SID in der CSV-Zuordnungstabelle für Benutzer oder Gruppen an, die aus dem Quell-Active Directory gelöscht oder entfernt wurden, wie im folgenden Beispiel gezeigt:
+
+[cols="1,1a"]
+|===
+| sid_source | sid_target 
+
+
+| S-1-5-21-2444020195-1862089444-1769087368-1000  a| 
+S-1-5-21-3481156262-2863848796-4292454742-512
+
+|===
+--
+.Szenario 2
+--
+Geben Sie für aktive Benutzer oder Gruppen in Active Directory die Benutzernamen oder Gruppennamen im CSV-Zuordnungsblatt ausschließlich in Kleinbuchstaben an. Fügen Sie das Domänenpräfix (domain\username) hinzu, wie im folgenden Beispiel gezeigt:
+
+[cols="1,1a"]
+|===
+| sid_source | sid_target 
+
+
+| rootdomain\user1  a| 
+rootdomain\user2
+
+|===
+--
+====
+
+
+=== Beschränkung der Massenmigration für Verzeichnisse derselben Ebene
+
+Bei Verwendung der Funktion „Massenmigration“ können Sie nicht mehrere Migrationsaufträge für Verzeichnisse erstellen, die sich in der Quell- und Zielverzeichnishierarchie auf derselben Ebene befinden. Dies betrifft beispielsweise gleichrangige Ordner in derselben Freigabeoperation für Quelle und Ziel. Der Versuch, solche Verzeichnisse in eine einzelne Massenmigrationskonfiguration einzubeziehen, führt zum Fehlschlagen der Auftragserstellung.
+
+.Problemumgehung
+Erstellen Sie Migrationsaufträge nacheinander für Verzeichnisse, die sich auf der gleichen Ebene befinden, anstatt sie zusammen hinzuzufügen.
+
+
+
+=== Verzeichnisbasierte Migration mit Übernahme der Berechtigungsstempelung
+
+Bei Migrationen auf Verzeichnisebene werden die geerbten Berechtigungen eines ausgewählten Stammverzeichnisses nicht auf das Zielverzeichnis übertragen. Da NetApp Data Migrator die geerbten Berechtigungen für das Stammverzeichnis nicht anwendet, erhalten auch Unterverzeichnisse und Dateien, die auf Vererbung basieren, diese geerbten Berechtigungen nicht.
+
+Dieses Problem betrifft nur die Weitergabe vererbter Berechtigungen aus dem Stammverzeichnis. NetApp Data Migrator überträgt explizit festgelegte Berechtigungen für Dateien und Verzeichnisse (nicht vererbte Berechtigungen) während der Migration korrekt.
+
+.Problemumgehung
+Nach Abschluss der Migration müssen die geerbten Berechtigungen für das Stammverzeichnis am Zielort manuell neu angewendet oder zurückgesetzt werden. Dadurch werden die korrekten geerbten Berechtigungen an alle Unterverzeichnisse und Dateien weitergegeben.
+
+
+
+=== Validierung des manuellen Uploads der UID- und GID-Zuordnung in NFS
+
+Während NFS-Migrationen, wenn die CSV-Datei mit der UID- und GID-Zuordnung numerische Benutzer-IDs oder Gruppen-IDs enthält, die auf dem Zielsystem nicht existieren, übernimmt NetApp Data Migrator diese Werte unverändert. NetApp Data Migrator prüft nicht, ob die angegebene UID oder GID auf dem Zielsystem existiert, und gibt keine Fehlermeldung oder Warnung in der Benutzeroberfläche aus. Dies kann dazu führen, dass Dateien mit falschen Besitzverhältnissen migriert werden. Sie müssen die korrekte UID- und GID-Zuordnung angeben.
+
+.Problemumgehung
+Stellen Sie vor Beginn der Migration sicher, dass alle in der Mapping-CSV-Datei angegebenen UID- und GID-Werte gültigen und vorhandenen Benutzern und Gruppen im Zielsystem entsprechen. Überprüfen Sie manuell die Existenz der Benutzer und Gruppen im Zielsystem, um zu vermeiden, dass NetApp Data Migrator während der Migration falsche Besitzverhältnisse zuweist.
+
+
+
+=== Die Migrationsvorprüfung zeigt fälschlicherweise eine Warnung wegen unzureichendem Speicherplatz an.
+
+Während der Vorabprüfungen der Migration kann die folgende Warnung angezeigt werden, selbst wenn am Ziel ausreichend Speicherplatz vorhanden ist:
+
+[listing]
+----
+Insufficient destination space for selected path. Do you still want to proceed with the migration?
+----
+Dies kann passieren, wenn Sie den Erkennungsschritt überspringen und NetApp Data Migrator einen allgemeinen Befehl verwendet, der die gesamte Blockgerätegröße anstelle der tatsächlichen Datensatzgröße liest.
+
+.Problemumgehung
+Führen Sie die Erkennung vor einem Migrationslauf durch. Dadurch wird sichergestellt, dass die Informationen zur Festplattennutzung für die Vorprüfungsoperation verfügbar sind. Wenn Sie die Warnung weiterhin sehen:
+
+. Bestätigen Sie, dass die Suche abgeschlossen ist.
+. Überprüfen Sie manuell, ob auf dem Zielvolume genügend Speicherplatz vorhanden ist.
+. Wenn ausreichend Speicherplatz vorhanden ist, können Sie die Datenmigration sicher fortsetzen.
+
+
+
+
+== Berichterstattung
+
+
+
+=== Excel zeigt falsche Berechtigungen in der COC-Berichtsdatei an
+
+Beim Öffnen der CSV-Datei des Chain-of-Custody-Berichts (CoC) in Microsoft Excel werden einige Datei- oder Ordnerberechtigungen möglicherweise als #NAME? angezeigt, zum Beispiel -rwxrwxrwx, statt der tatsächlichen Werte.
+
+Dies geschieht, weil Excel bestimmte Berechtigungszeichenfolgen (beginnend mit - oder =) fälschlicherweise als Formeln interpretiert, was zu Anzeigefehlern führt. Die CSV-Datei selbst ist korrekt, dies ist nur ein Anzeigeproblem.
+
+.Problemumgehung
+Um die korrekten Datei- und Ordnerberechtigungen anzuzeigen, öffnen Sie die CSV-Datei mit einer der folgenden Anwendungen:
+
+* Google Tabellen
+* Apple Numbers
+* Online-CSV-Viewer
+* Texteditor, zum Beispiel Notepad++
+
+
+
+
+=== Es wird keine Fehlermeldung angezeigt, wenn der Massenermittlungsauftrag aufgrund von Netzwerkproblemen fehlschlägt.
+
+Wenn der Host- oder Zielserver während eines Massenermittlungsauftrags ausfällt, zeigt NetApp Data Migrator möglicherweise keine Fehlermeldung an. Dies kann den Eindruck erwecken, dass der Auftrag weiterhin normal ausgeführt wird.
+
+Die Erkennungsaufträge werden alle 30 Sekunden aktualisiert. Wenn Sie feststellen, dass die Anzahl der Dateien, Verzeichnisse oder die Datengröße nicht aktualisiert wird, könnte dies auf ein Netzwerkproblem hinweisen.
+
+.Problemumgehung
+. Überprüfen Sie die Netzwerkverbindung:
++
+.. Öffnen Sie das Terminal der Worker-VM.
+.. Die IP-Adresse des Zielservers anpingen.
++
+Wenn keine Antwort erfolgt, ist das Ziel möglicherweise nicht erreichbar.
+
+
+
+. Netzwerkschnittstelle wiederherstellen:
++
+.. Verwenden Sie SSH, um eine Verbindung zum Zielserver herzustellen:
++
+[source, cli]
+----
+ssh <destination_IP>
+----
+.. Ermitteln Sie den Schnittstellennamen, zum Beispiel eth0:
++
+[source, cli]
+----
+ipconfig
+----
+.. Schalten Sie die Netzwerkschnittstelle wieder ein:
++
+[source, cli]
+----
+ifup <interface_name>
+----
+
+
+. Falls erforderlich, wiederholen Sie die Schritte 1 und 2 für den Quellserver.
+
+
+
+
+=== Benutzerwechsel auf Windows-Worker nicht möglich
+
+Der Wechsel zu einem anderen Benutzerkonto auf dem Windows-Arbeitsrechner kann aufgrund bestehender Netzwerkverbindungen fehlschlagen. Dies kann den Zugriff auf den Dateiserver verhindern.
+
+.Problemumgehung
+. Entfernen Sie die vorherige Verbindung, indem Sie die Eingabeaufforderung auf dem Windows-Worker öffnen und die folgenden Befehle ausführen:
++
+[source, cli]
+----
+net use
+----
++
+[source, cli]
+----
+net use <IP address> /delete
+----
+. Wechseln Sie zum neuen Benutzerkonto und greifen Sie auf den Dateiserver zu.
+
+
+
+
+== Validierung
+
+
+
+=== Dateigrößen können sich nach der Migration unterscheiden, selbst wenn die Anzahl übereinstimmt
+
+Nach Abschluss der Datenmigration stimmt die Gesamtzahl der Dateien, aber einige Dateien können eine andere Größe im Vergleich zur ursprünglichen Quelle haben. Dies kann passieren, wenn das Netzwerk unterbrochen wird oder wenn es während der Dateiübertragung Probleme mit dem Server gibt.
+
+.Problemumgehung
+. Prüfen Sie den Migrations-COC-Bericht, um die als fehlerhaft markierten Dateien zu identifizieren.
+. Führen Sie die Migration so lange erneut durch, bis die Fehler behoben sind.
+
+
+
+
+== Arbeitsabläufe
+
+
+
+=== Auftrag wurde für mehr als 20 Minuten pausiert oder angehalten
+
+Ein Eingreifen kann erforderlich sein, wenn Netzwerkverbindungsprobleme, Probleme mit der Stabilität des Quell- oder Zielvolumes oder beides auftreten. Der Auftrag kann sich im Status „Angehalten“ oder „Wird ausgeführt“ befinden, ohne dass sichtbare Fortschritte erkennbar sind. Dies kann passieren, wenn die Quell- oder Zieldienste ausfallen oder der Worker-Dienst eine Ausfallzeit hat.
+
+.Problemumgehung
+. Überprüfen Sie Quelle und Ziel.
++
+Falls sie offline sind, starten Sie sie neu, um die Verbindung wiederherzustellen.
+
+. Überprüfen Sie den Status des Workers.
++
+Wenn der Worker offline ist, verwenden Sie SSH, um eine Verbindung zur VM herzustellen und den folgenden Befehl auszuführen:
+
++
+[source, cli]
+----
+systemctl restart datamigrator-worker.service
+----
+. Starten Sie die VM neu:
++
+Sollte das Problem weiterhin bestehen, starten Sie die Worker-VM neu.
+
+
+
+
+
+=== Der Status der Jobausführung ist bei Fehlern verwirrend
+
+Bei einigen Migrationsaufträgen treten Fehler auf und es wird der Status „Abgeschlossen“ oder „Fehlerhaft“ angezeigt. Dies kann bei der Interpretation des Status des Migrationsauftrags zu Verwirrung führen.
+
+Statusdefinitionen:
+
+* Abgeschlossen: Ein Joblauf wurde beendet, kann aber Fehler enthalten.
+* Fehler: Ein Joblauf ist aufgrund eines kritischen Problems fehlgeschlagen.
+
+
+.Problemumgehung
+Überprüfen Sie das Ergebnis des Joblaufs, indem Sie die Joblaufdetails auf Fehler untersuchen, insbesondere wenn der Status „Abgeschlossen“ ist. Verlassen Sie sich nicht nur auf die Statusbezeichnung, bis Sie dieses Problem behoben haben.

@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: quick-start.html 
+keywords: quick start, installation, first project, control plane 
+summary: 'Um mit NetApp Data Migrator zu beginnen, müssen Sie Control Plane- und Worker-VMs mit AWS-, Azure-, Google Cloud- oder Open Virtual Appliance (OVA)-Vorlagen einrichten.' 
+---
+= Schnellstart für NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Die ersten Schritte mit NetApp Data Migrator umfassen einige Schritte.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"]Erfahren Sie mehr über NetApp Data Migrator
+[role="quick-margin-para"]
+NetApp Data Migrator unterstützt die Dateiübertragungsprotokolle NFS und SMB. Stellen Sie fest, dass NetApp Data Migrator Ihre Anforderungen an die Datenmigration unterstützt, und wählen Sie die Bereitstellungsoption, die zu Ihrer Umgebung passt:
+
+[role="quick-margin-list"]
+* AWS
+* Azure
+* Google Cloud-Dienste
+* Open Virtual Appliance (OVA)-Vorlagen
+
+
+[role="quick-margin-para"]
+Überprüfen Sie link:decide-to-use-data-migrator.html["Entscheiden Sie, ob Sie NetApp Data Migrator verwenden möchten."] und die link:networking-requirements.html["Netzwerkanforderungen"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"]Installieren und einrichten
+[role="quick-margin-para"]
+NetApp Data Migrator verwendet eine Steuerungsebene und Worker-Knoten. Zuerst stellen Sie die Steuerungsebenen-VM und die Worker-VMs entsprechend Ihren Migrationsanforderungen bereit. Für NFS stellen Sie einen Linux-Worker bereit und für SMB einen Windows-Worker. Sie können NFS oder SMB oder beide Protokolle verwenden. Nach der Bereitstellung erstellen Sie die Steuerungsebenen-VM und die Worker-VMs und greifen auf die NetApp Data Migrator-Benutzeroberfläche zu.
+
+[role="quick-margin-para"]
+link:learn-about-install.html["Erfahren Sie mehr über die Installation von NetApp Data Migrator"]
+
+[role="quick-margin-para"]
+Lernen Sie, wie Sie:
+
+[role="quick-margin-list"]
+. link:deploy-control-plane-and-linux-workers.html["Stellen Sie die Control-Plane-VM und die Linux-Worker-VM bereit."]
+. link:create-control-plane-and-worker-vms.html["Erstellen Sie die Steuerungsebenen-VM und die Worker-VMs"]
+. link:access-data-migrator-ui.html["Greifen Sie auf die NetApp Data Migrator-Benutzeroberfläche zu"]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drei"]Konfigurieren und verwalten
+[role="quick-margin-para"]
+Zuerst melden Sie sich als Administrator mit den Standardanmeldedaten an und aktualisieren Ihren Benutzernamen und Ihr Passwort. Anschließend können Sie Ihr erstes Projekt erstellen und die Dateiserver hinzufügen, um die Migrations-Workflows zu initiieren.
+
+[role="quick-margin-para"]
+Lernen Sie, wie Sie:
+
+[role="quick-margin-list"]
+. link:configure-data-migrator.html["Konfigurieren Sie NetApp Data Migrator"]
+. link:manage-projects.html["Erstellen und Verwalten von Projekten in NetApp Data Migrator"]
+

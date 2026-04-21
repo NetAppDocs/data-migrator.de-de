@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: learn-about-install.html 
+keywords: aws installation, prerequisites, control plane, worker vm, ec2 
+summary: Erfahren Sie mehr über die Installation der NetApp Data Migrator-Steuerungsebene und der Worker-VMs. 
+---
+= Erfahren Sie mehr über die Installation von NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie müssen eine Steuerungsebene und Worker installieren, um NFS- und SMB-Migrationsaufträge mit NetApp Data Migrator auszuführen.
+
+* *Steuerungsebene*: Die Steuerungsebene dient als zentrale Verwaltungs- und Steuerungsschicht. Sie stellen die Steuerungsebene auf einer virtuellen Linux-Maschine (VM) bereit, dann stellen Sie die Worker bereit.
+* *Worker*: Worker sind virtuelle Maschinen, die die eigentliche Datenmigration durchführen. Je nach Umfang und Anforderungen können Sie mehrere Worker einsetzen. Der Worker-Typ hängt vom Protokoll ab.
++
+** Ein Linux-Worker unterstützt NFS-Migrationen.
+** Ein Windows-Worker unterstützt SMB-Migrationen.
+
+
+
+
+Zuerst stellen Sie die virtuelle Maschine (VM) der Steuerungsebene und die Linux-Worker-VM mithilfe des AWS-, Azure- oder Google Cloud-Dienstes oder mithilfe von Open Virtual Appliance (OVA)-Vorlagen bereit. Sie laden die für die Bereitstellung erforderlichen NetApp Data Migrator-Images von der NetApp Support-Website herunter.
+
+Nach der Bereitstellung erstellen Sie die Steuerungsebene- und Worker-VMs, um auf NetApp Data Migrator zuzugreifen. Sie erstellen die Steuerungsebene-VM und die Linux-Worker-VM mithilfe der bereitgestellten Images. Die Windows-Worker-VM erstellen Sie mit dem Windows Worker Installer, den Sie von der NetApp Support-Website herunterladen.
+
+.Was kommt als Nächstes?
+Nachdem Sie gelernt haben, wie man NetApp Data Migrator installiert, können Sie link:register-for-account.html["Registrieren Sie sich für ein Konto"].

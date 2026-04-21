@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: validate-control-plane-vm.html 
+keywords: google cloud, installation, control plane, worker vm, iam roles 
+summary: Optional können Sie die Bereitstellung der Control Plane VM auf Google Cloud validieren, indem Sie den Dienststatus, die Protokolle und den Pod-Integritätszustand überprüfen. 
+---
+= Optional kann die Bereitstellung der Steuerungsebenen-VM für NetApp Data Migrator validiert werden.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Optional kann die Bereitstellung der Control-Plane-VM für NetApp Data Migrator validiert werden.
+
+.Schritte
+. Verwenden Sie SSH, um eine Verbindung zu Ihrem Control Plane-Server herzustellen:
++
+[source, cli]
+----
+sudo su - datamigrator
+----
+. Überprüfen Sie den Status des Boot-Dienstes und der Protokolle:
++
+[source, cli]
+----
+sudo systemctl status boot-microk8s.service
+----
++
+Optional können Sie die Boot-Dienstprotokolle überprüfen:
+
++
+[source, cli]
+----
+tail -10f /opt/datamigrator/logs/ndm-first-boot.log
+----
++
+Wenn die Einrichtung abgeschlossen ist, sehen Sie  `Datamigrator Application Setup Complete` in den Protokollen.
+
+. Überprüfen Sie, ob alle Pods betriebsbereit sind:
++
+[source, cli]
+----
+kubectl get pods -n datamigrator
+----
+
+
+.Was kommt als Nächstes?
+Nachdem Sie gelernt haben, wie man die Control-Plane-VM validiert, können Sie link:access-data-migrator-ui.html["Zugriff auf die NetApp Data Migrator UI"].

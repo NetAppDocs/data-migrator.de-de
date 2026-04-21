@@ -1,0 +1,91 @@
+---
+settings:
+  name: NetApp Data Migrator
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: de-de,us-en,es-es,fr-fr,it-it,pt-br,ja-jp,ko-kr,zh-cn,zh-tw
+sidebar:
+  entries:
+  - title: NetApp Data Migrator-Dokumentation
+    url: "/index.html"
+  - title: Versionshinweise
+    entries:
+    - title: Was ist neu
+      url: "/whats-new.html"
+    - title: Supportmatrix
+      url: "/support-matrix.html"
+    - title: Bekannte Probleme
+      url: "/known-issues.html"
+    - title: Bekannte Einschränkungen
+      url: "/known-limitations.html"
+  - title: Los geht's
+    entries:
+    - title: Erfahren Sie mehr über NetApp Data Migrator
+      url: "/learn-about-data-migrator.html"
+    - title: Entscheiden Sie, ob Sie NetApp Data Migrator verwenden möchten.
+      url: "/decide-to-use-data-migrator.html"
+    - title: Schnellstart
+      url: "/quick-start.html"
+    - title: Netzwerkanforderungen
+      entries:
+      - title: Netzwerkzugriff überprüfen
+        url: "/networking-requirements.html"
+      - title: Port-Anforderungen
+        url: "/port-requirements.html"
+  - title: Installieren, einrichten und aktualisieren
+    entries:
+    - title: Erfahren Sie mehr über die Installation von NetApp Data Migrator
+      url: "/learn-about-install.html"
+    - title: Registrieren Sie sich für ein Konto
+      url: "/register-for-account.html"
+    - title: Steuerungsebene und Linux-Worker bereitstellen
+      url: "/deploy-control-plane-and-linux-workers.html"
+    - title: Erstellen Sie die Steuerungsebene und die Worker-VMs
+      url: "/create-control-plane-and-worker-vms.html"
+    - title: Validieren Sie die Steuerungsebene und die Worker-Bereitstellung
+      url: "/validate-control-plane-vm.html"
+    - title: Zugriff auf die NetApp Data Migrator-Benutzeroberfläche
+      url: "/access-data-migrator-ui.html"
+    - title: Konfigurieren Sie NetApp Data Migrator
+      url: "/configure-data-migrator.html"
+    - title: Modernisierung der Kontrollebene und der Worker
+      url: "/upgrade.html"
+  - title: Verwenden Sie NetApp Data Migrator
+    entries:
+    - title: Projekte erstellen und verwalten
+      url: "/manage-projects.html"
+    - title: Benutzer verwalten
+      entries:
+      - title: Benutzer hinzufügen und verwalten
+        url: "/manage-users.html"
+      - title: Zugriffskontrolle verwalten
+        url: "/access-control.html"
+    - title: Dateiserver hinzufügen und verwalten
+      url: "/manage-file-servers.html"
+    - title: Echtzeitbenachrichtigungen konfigurieren
+      url: "/configure-notifications.html"
+    - title: Migrationsoptionen verwalten
+      entries:
+      - title: Datenmigration planen
+        url: "/configure-bulk-discover.html"
+      - title: Massenmigration konfigurieren
+        url: "/configure-bulk-migrate.html"
+      - title: Massenumstellung konfigurieren
+        url: "/configure-bulk-cutover.html"
+    - title: Jobs und Jobläufe verwalten
+      url: "/manage-jobs.html"
+    - title: Supportpaket generieren
+      url: "/generate-support-bundle.html"
+  - title: FAQ
+    url: "/faq.html"
+  - title: Hilfe erhalten
+    entries:
+    - title: Registrieren Sie sich für Support
+      url: "/register-for-support.html"
+    - title: Fehlerbehebung
+      url: "/troubleshoot.html"
+  - title: Rechtliche Hinweise
+    url: "/legal-notices.html"

@@ -1,0 +1,184 @@
+---
+sidebar: sidebar 
+permalink: troubleshoot.html 
+keywords: troubleshooting, kubectl, openbao, application access, diagnostic commands 
+summary: Nutzen Sie die Schritte zur Fehlerbehebung und die Referenzbefehle, um NetApp Data Migrator-Probleme zu beheben. 
+---
+= Fehlerbehebung NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie bei der Verwendung von NetApp Data Migrator auf Probleme stoßen, könnten diese Schritte zur Fehlerbehebung und Referenzbefehle hilfreich sein.
+
+
+
+== SMB-Mount-Fehler bei Verwendung des Hostnamens
+
+Bei der Konfiguration einer Verzeichnismigration kann die SMB-Einbindung fehlschlagen, wenn der Hostname des SMB-Dateiservers als URL angegeben wird. Dies kann auftreten, wenn die virtuelle Maschine (VM) der Steuerungsebene nicht über die korrekte DNS-Konfiguration zur Auflösung des Hostnamens des SMB-Dateiservers verfügt. Der Fehler bei der Einbindung kann mit einer Fehlermeldung ähnlich wie  `mount failed: Resource temporarily unavailable` erscheinen.
+
+Dieses Problem lässt sich umgehen, indem Sie in der Migrationskonfiguration die IP-Adresse des SMB-Dateiservers anstelle des Hostnamens verwenden.
+
+.Schritte
+. Den Hostnamen in eine IP-Adresse auflösen:
++
+[source, cli]
+----
+nslookup
+----
+. Konfigurieren Sie das Feld „Hostname“ des SMB-Dateiservers mithilfe der aufgelösten IP-Adresse.
+. Versuchen Sie erneut, die Migrationskonfiguration auf Verzeichnisebene durchzuführen.
++
+Nach dem Wechsel zur IP-Adresse sollte der Mount-Vorgang erfolgreich sein.
+
+
+
+
+
+== Fehlerbehebung beim Anwendungszugriff
+
+Alle Zugangsdaten werden in OpenBao verwaltet.
+
+Ersetzen Sie in den folgenden Schritten  `<IP_ADDRESS>` durch die IP-Adresse Ihrer virtuellen Maschine (VM).
+
+.Schritte
+. Rufen Sie das OpenBao Root-Token ab. Verwenden Sie SSH, um über Bastion Connect im Azure-Portal eine Verbindung zum Control-Plane-Server herzustellen:
++
+[source, cli]
+----
+sudo su - datamigrator
+cat /opt/datamigrator/openbao/cluster-keys.json
+----
+. Melden Sie sich an der OpenBao UI an: Verwenden Sie  `https://IP_ADDRESS/ui/` und geben Sie das Root-Token für die Anmeldung ein.
+. Navigiere zu den Geheimnissen.
+. Keycloak-Benutzeroberfläche: `https://IP_ADDRESS/keycloak/`
+. NetApp Data Migrator-Benutzeroberfläche: `https://IP_ADDRESS/`
++
+Melden Sie sich mit dem Standardbenutzernamen und -passwort bei der NetApp Data Migrator-Benutzeroberfläche an.
+
+. Temporale Benutzeroberfläche: `https://IP_ADDRESS/temporal/ui/`
+. Postgres-Verbindung: Verwenden Sie die Multipass-IP-Adresse, um eine Verbindung zur Postgres-Datenbank herzustellen. Benutzername und Passwort erhalten Sie von OpenBao.
++
+Schlüssel: POSTGRES_DMADMIN_USER und POSTGRES_DMADMIN_PASSWORD
+
+
+
+
+
+== Verwenden Sie die "kubectl"-Referenzbefehle
+
+* Um die Pods im datamigrator-Namespace zu erhalten:
++
+[source, cli]
+----
+kubectl get pods -n datamigrator
+----
+* So erhalten Sie die Protokolle für einen Pod im datamigrator-Namespace:
++
+[source, cli]
+----
+kubectl logs <podname> -n datamigrator
+----
+* So beschreiben Sie einen Pod im datamigrator-Namespace:
++
+[source, cli]
+----
+kubectl describe <podname> -n datamigrator
+----
+* Um alle Namensräume zu erhalten:
++
+[source, cli]
+----
+kubectl get ns
+----
+* Um die Pods in einem beliebigen Namespace zu erhalten:
++
+[source, cli]
+----
+kubectl get pods -n <NAMESPACE>
+----
+
+
+
+
+== Entsiegeln OpenBao
+
+Sollten Sie auf ein Problem stoßen, bei dem OpenBao versiegelt ist, befolgen Sie diese Schritte, um die Versiegelung aufzuheben.
+
+.Schritte
+. Verwenden Sie SSH, um über Bastion connect eine Verbindung zum Control-Plane-Server herzustellen.
+. Ersetzen Sie OPENBAO_UNSEAL_KEY durch Ihren Schlüssel:
++
+[source, cli]
+----
+sudo su - datamigrator
+export OPENBAO_UNSEAL_KEY=`jq -r ".unseal_keys_b64[]" /opt/datamigrator/openbao/cluster-keys.json`
+kubectl exec openbao-0 -n openbao -- bao operator unseal $OPENBAO_UNSEAL_KEY
+kubectl exec openbao-1 -n openbao -- bao operator unseal $OPENBAO_UNSEAL_KEY
+kubectl exec openbao-2 -n openbao -- bao operator unseal $OPENBAO_UNSEAL_KEY
+----
+
+
+
+
+== Beheben von Problemen beim Zugriff auf Azure-VMs
+
+Sie sollten Ihre Azure-VM erfolgreich erstellen und sich damit verbinden können. Falls Probleme auftreten, starten Sie Ihre virtuelle Maschine neu oder setzen Sie Ihre SSH-Konfiguration zurück.
+
+Starten Sie Ihre virtuelle Maschine neu::
++
+--
+.Schritte
+. Navigieren Sie zu Ihrem Azure-Portal.
+. Navigieren Sie zu Ihrer VM und wählen Sie *Neustart*.
+
+
+--
+SSH-Konfiguration zurücksetzen::
++
+--
+Beachten Sie zunächst die Anweisungen in diesem link:https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/linux/troubleshoot-ssh-connection["Microsoft-Fehlerbehebungsreferenz"^]. Gelegentlich können jedoch Probleme beim Öffnen des SSH-Bastion-Portals auftreten, die Sie möglicherweise wie folgt beheben können.
+
+.Schritte
+. Navigieren Sie zur Steuerungsebene Ihrer Azure-VM.
+. Wählen Sie *Hilfe*.
+. Wählen Sie *Passwort zurücksetzen*.
+. Wählen Sie unter Modus die Option *SSH Public Key hinzufügen*.
+. Geben Sie als Benutzernamen ubuntu ein.
+. Wählen Sie für die Quelle des öffentlichen Schlüssels *Vorhandenen in Azure gespeicherten Schlüssel verwenden*.
+. Wählen Sie für den gespeicherten Schlüssel *Wählen Sie Ihren bereits erstellten Schlüssel aus*.
+. Wählen Sie *Aktualisieren*.
+
+
+--
+
+
+
+
+== Windows-Worker kann auf dem SMB-Dateiserver nicht den Benutzer wechseln
+
+Wenn ein Windows-Mitarbeiter versucht, mit anderen Anmeldeinformationen als denen, die zuvor für denselben Dateiserver verwendet wurden, eine Verbindung zu einem SMB-Dateiserver herzustellen, kann die folgende Fehlermeldung erscheinen:
+
+`System error 1219: Multiple connections to a server or shared resource by the same user, using more than one user name, are not allowed.`
+
+Dies geschieht, weil Windows nicht mehrere gleichzeitige Verbindungen zur selben Netzwerkressource mit unterschiedlichen Anmeldeinformationen zulässt. Selbst wenn die vorherige Verbindung inaktiv ist, könnte sie dennoch zwischengespeichert oder vom System gehalten werden.
+
+Befolgen Sie diese Schritte, um dieses Problem zu beheben:
+
+. Bestehende SMB-Verbindungen auflisten:
++
+[source, cli]
+----
+net use
+----
+. Löschen Sie alle bestehenden Verbindungen zum Zielserver:
++
+[source, cli]
+----
+net use <share> /delete
+----
+. Starten Sie das System neu, um alle verbleibenden zwischengespeicherten Anmeldeinformationen oder Sitzungen zu löschen.
+. Stellen Sie die Verbindung mit Ihren gewünschten Anmeldedaten wieder her.
+

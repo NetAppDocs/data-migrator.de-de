@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: networking-requirements.html 
+keywords: networking requirements, TCP, UDP, control plane, worker, communication 
+summary: Netzwerkanforderungen für NetApp Data Migrator, einschließlich der benötigten TCP- und UDP-Ports für die Steuerungsebene und die Worker-Kommunikation. 
+---
+= Überprüfen Sie den NFS- und SMB-Netzwerkzugriff in NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie müssen sicherstellen, dass die IP-Adresse und das Subnetz sowohl für die Steuerungsebene als auch für die Worker in der Exportrichtlinie des Speichersystems zugelassen sind. Dies ist erforderlich, um NFS- und SMB-Migrationen mit NetApp Data Migrator zu unterstützen.
+
+
+
+== NFS-Zugriff überprüfen
+
+Für NFS benötigen die Steuerungsebene und die Worker-Knoten die Berechtigung, als Root-Clients auf das Speichersystem zuzugreifen.
+
+.Schritte
+. Führen Sie eine manuelle Einbindung von einem Worker-Knoten aus durch, um die Verfügbarkeit des Volumes zu überprüfen:
++
+[source, cli]
+----
+sudo mount -t nfs <storage-ip>:/<volume-path> /mnt/test
+ls -la /mnt/test
+----
+. Stellen Sie sicher, dass Root-Zugriff aktiviert ist, indem Sie überprüfen, ob die Exportrichtlinienregel Superuser-Zugriff zulässt. Aktivieren Sie gegebenenfalls Root-Zugriff (kein Root-Squash), indem Sie die Exportrichtlinienregel entsprechend anpassen.
+
+
+
+
+== SMB-Zugriff überprüfen
+
+Für den SMB-Zugriff benötigen die Steuerungsebene und die Worker-Knoten die Berechtigung, mit den SMB-Anmeldeinformationen auf das Speichersystem zuzugreifen. Der SMB-Benutzer muss Mitglied der Gruppen „Backup-Operatoren“ und „Administratoren“ sein.
+
+.Schritt
+. Führen Sie eine manuelle Einbindung von einem Worker-Knoten aus durch, um die Verfügbarkeit des Volumes zu überprüfen:
++
+[source, cli]
+----
+net use Z: \\<storage-ip>\<share> /user:<domain>\<username> <password>
+----
+

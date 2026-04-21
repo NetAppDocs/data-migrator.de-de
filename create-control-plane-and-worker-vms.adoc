@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: create-control-plane-and-worker-vms.html 
+keywords: aws, azure, google cloud, ova, control plane, worker vm, images, linux, windows 
+summary: 'Erstellen Sie die virtuelle Maschine (VM) der Steuerungsebene sowie Linux- und Windows-Worker-VMs für den Zugriff auf NetApp Data Migrator.' 
+---
+= Erstellen Sie die Steuerungsebene und die Worker-VMs für den Zugriff auf NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Erstellen Sie die virtuelle Maschine (VM) der Steuerungsebene sowie Linux- und Windows-Worker-VMs für den Zugriff auf NetApp Data Migrator.
+
+.Bevor Sie beginnen
+Nur für SMB-Migrationen laden Sie den Windows Worker Installer von der link:https://mysupport.netapp.com/site/downloads["NetApp Support Site"^] herunter.
+
+.Über diese Aufgabe
+Sie erstellen die Control-Plane-VM und die Linux-Worker-VM mithilfe der Images, die Sie über AWS, Azure oder Google Cloud Service oder OVA-Vorlagen bereitgestellt haben. Sie erstellen die Windows-Worker-VM mit dem Windows Worker Installer. Die Linux-Worker-VM unterstützt NFS-Migrationen und die Windows-Worker-VM unterstützt SMB-Migrationen. Sie können mehrere Worker-VMs entsprechend Ihrem Bedarf erstellen.
+
+.Schritte
+. Verwenden Sie das bereitgestellte Control-Plane-Image, um eine Control-Plane-VM mit der folgenden empfohlenen Konfiguration zu erstellen:
++
+[cols="1,2a"]
+|===
+| Beschreibung | Empfohlene Einstellung 
+
+
+| VM-Konfiguration  a| 
+** Abbildung: Benutzerdefiniertes importiertes Bild für die Steuerungsebene
+** Netzwerkschnittstellenkartentyp: gVNIC
+** Größe: 8 vCPU, 64 GB RAM
+** Speicher: 200 GiB
++
+--
+Für die Speicherplanung sollten Sie etwa 1,1 GB Speicherplatz pro Million Dateien einplanen. Den gesamten Speicherplatzbedarf können Sie schätzen, indem Sie die erwartete Anzahl der Dateien (in Millionen) mit 1,1 multiplizieren. Wenn Sie beispielsweise mit etwa 5 Millionen Dateien rechnen, beträgt der geschätzte Speicherplatzbedarf für die Metadaten 5 × 1,1 GB = 5,5 GB.
+
+Zusätzlich sollten Sie folgenden Speicherplatz zuweisen:
+
+*** Zusätzliche 50 GB für Docker-Images, Betriebssystemspeicher und andere Systemkomponenten
+*** Stellen Sie zusätzlichen Pufferplatz bereit, um zukünftiges Wachstum und betrieblichen Overhead zu berücksichtigen
+
+
+--
+
+
+
+
+| Hyperscaler  a| 
+** AWS: r7i.2xlarge-Instanz
+** Azure-VM-Größe: Standard_E8ds_v5
+** Google Cloud-Maschinentyp: c3-highmem-8
+
+
+|===
+. Verwenden Sie das bereitgestellte Linux-Worker-Image, um die Linux-Worker-VM zur Unterstützung der NFS-Migration mit der folgenden empfohlenen Konfiguration zu erstellen:
++
+[cols="1,2a"]
+|===
+| Beschreibung | Empfohlene Einstellung 
+
+
+| VM-Konfiguration  a| 
+** Bild: Benutzerdefiniertes importiertes Image für den Linux-Worker
+** Netzwerkschnittstellenkartentyp: gVNIC
+** Größe: 4 vCPU, 16 GB RAM
+** Speicher: 100 GB
+
+
+
+
+| Hyperscaler  a| 
+** AWS: r7i.2xlarge
+** Azure-VM-Größe: Standard_E8ds_v5
+** Google Cloud-Maschinentyp: c3-highmem-8
+
+
+|===
+. Erstellen Sie eine Windows-Worker-VM zur Unterstützung von SMB-Migrationen mithilfe des Windows Worker Installers:
++
+.. Erstellen Sie eine Windows-VM mit den folgenden empfohlenen Konfigurationseinstellungen:
++
+*** Abbildung: Windows Server 2022 Base
+*** Architektur: 64bit
+*** Größe: 16 vCPU, 64 GB RAM
+*** Netzwerkschnittstellenkartentyp: gVNIC
+*** Stellen Sie sicher, dass das Remote Desktop Protocol (RDP) (3389) geöffnet ist.
+
+
+.. Erstellen Sie eine Remote-Arbeitssitzung mithilfe von RDP.
++
+Erfahren Sie mehr über link:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-rdp.html["RDP-Verbindungen"^].
+
+.. Kopieren Sie den Windows Worker Installer auf die Control Plane VM und führen Sie ihn dort aus.
+
+
+
+
+.Was kommt als Nächstes?
+Nachdem Sie gelernt haben, wie Sie die Steuerungsebene und die Worker-VMs erstellen, können Sie eine der folgenden Optionen wählen:
+
+* Optional, link:validate-control-plane-vm.html["Validieren Sie die Control-Plane-VM"]
+* link:access-data-migrator-ui.html["Greifen Sie auf die NetApp Data Migrator-Benutzeroberfläche zu und stellen Sie eine Verbindung zur Steuerungsebene und den Workern her."]
+

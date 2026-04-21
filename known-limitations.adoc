@@ -1,0 +1,126 @@
+---
+sidebar: sidebar 
+permalink: known-limitations.html 
+keywords: known, limitations, nfs limits, smb limits, worker sizing, migration restrictions 
+summary: Machen Sie sich mit den bekannten Einschränkungen von NetApp Data Migrator vertraut, um Ihre Migrationsaktivitäten effizienter zu gestalten. 
+---
+= Bekannte Einschränkungen für NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Die Einschränkungen und Funktionen der NFS- und SMB-Migration, die mit dieser Version nicht oder nicht optimal funktionieren, sind hier aufgeführt. Lesen Sie diese Einschränkungen sorgfältig.
+
+
+
+== Einschränkungen bei der Erkennung und Migration von NFS und SMB
+
+[cols="1,2,2a"]
+|===
+| Beschreibung | NFS | SMB 
+
+
+| Anzahl der Exportpfade, die gleichzeitig ausgeführt werden können | 4  a| 
+2
+
+
+
+| Maximale Anzahl von Dateien in einem Verzeichnis | 1 Million  a| 
+1 Million
+
+
+
+| Worker-Größenbestimmung | 4-Kern-CPU, 16 GB Arbeitsspeicher  a| 
+16-Kern-CPU, 64 GB Arbeitsspeicher
+
+
+
+| Dimensionierung der Steuerebene | 8-Kern-CPU, 64 GB Arbeitsspeicher  a| 
+8-Kern-CPU, 64 GB Arbeitsspeicher
+
+
+
+| Maximale Anzahl von Dateien in einem Exportpfad | 20 Millionen  a| 
+20 Millionen
+
+|===
+
+
+== Funktionsbeschränkungen
+
+[cols="1,2a"]
+|===
+| Beschreibung | Grenzen 
+
+
+| Unterstützung für aktive Ziele  a| 
+NetApp Data Migrator unterstützt kein aktives Ziel (wenn ein Zielspeicher vor der Umstellung aktiv genutzt oder beschrieben wird).
+
+
+
+| Groß-/Kleinschreibung beachten  a| 
+Für SMB migriert NetApp Data Migrator nur eine der mit NFS in einem Ordner erstellten Dateien mit unterschiedlicher Groß-/Kleinschreibung und gibt für die andere Datei einen Fehler aus. Dies tritt auf, weil SMB nicht beide Dateien akzeptieren kann. Sie können die Erkennung mit NFS ausführen, um diese case-sensitiven Dateien zu identifizieren.
+
+
+
+| Netzwerkzugänglichkeit  a| 
+NetApp empfiehlt die Verwendung von NetApp Data Migrator in privaten Netzwerken.
+
+
+
+| NFSv4-ACLs  a| 
+NetApp Data Migrator stempelt keine Zugriffskontrolllisten (ACLs) mit NFSv4, sondern wendet lediglich grundlegende Berechtigungen im Ziel an. Dieses Verhalten ist ähnlich wie bei NFSv3.
+
+
+
+| Protokollmigration – Typ  a| 
+Protokollübergreifende Migrationen werden nicht unterstützt, beispielsweise von NFS zu SMB.
+
+
+
+| Protokollmigration – Version  a| 
+Eine versionsübergreifende Migration innerhalb desselben Protokolls wird nicht unterstützt, beispielsweise von NFSv3 zu NFSv4.
+
+
+
+| SMB-Berechtigungen  a| 
+NetApp Data Migrator unterstützt keine Migration von SMB-Systemzugriffskontrolllisten (SACL) (Audit-Berechtigungen).
+
+
+
+| SMB-Dateien mit nachfolgenden Leerzeichen  a| 
+Bei der Migration über SMB gibt NetApp Data Migrator Fehler für Dateien mit Dateinamen aus, die nachfolgende Leerzeichen enthalten, da SMB diese Dateinamen nicht zulässt.
+
+
+
+| SMB-Spezialdateien  a| 
+NetApp Data Migrator erkennt Umleitungen (symbolische Links, Hardlinks, Verbindungspunkte, Alternate Data Streams (ADS) und Volume Mount Points) und meldet diese nach der Erkennung. Die Migration von ADS, Sparse-Dateien und SMB-Umleitungen wird nicht unterstützt.
+
+
+
+| Sicherheit  a| 
+NetApp Data Migrator verwendet selbstsignierte Zertifikate, um den Webverkehr mit SSL/TLS zu verschlüsseln.
+
+
+
+| Sparse-Dateien  a| 
+Sparse-Dateien werden beim Migrieren zu Dateien in voller Größe, da NetApp Data Migrator die Sparsity nicht beibehält. Für diese Dateien wird zusätzlicher Speicher benötigt.
+
+
+
+| Systemdateien  a| 
+NetApp Data Migrator kann keine systemgenerierten Dateien migrieren, die dem Quellsystem gehören.
+
+
+
+| Benutzeroberfläche  a| 
+NetApp Data Migrator ist für die Browser Google Chrome und Firefox mit einer Bildschirmauflösung von 1920 x 1080 optimiert; mobile Displays werden nicht unterstützt.
+
+
+
+| Windows-Worker-Bereitstellung  a| 
+Der Windows-Worker muss Teil derselben Stammdomäne wie das Ziel sein.
+
+|===

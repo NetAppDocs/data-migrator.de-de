@@ -1,0 +1,85 @@
+---
+sidebar: sidebar 
+permalink: manage-users.html 
+keywords: user management, rbac, app admin, user accounts, access control 
+summary: Fügen Sie NetApp Data Migrator-Benutzer mit rollenbasierter Zugriffssteuerung hinzu und verwalten Sie sie, einschließlich der Erstellung von Konten, der Zuweisung von Rollen sowie der Aktivierung oder Deaktivierung des Zugriffs. 
+---
+= Benutzer in NetApp Data Migrator hinzufügen und verwalten
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Data Migrator verwendet link:access-control.html["Rollenbasierte Zugriffssteuerung (RBAC)"] zur sicheren und effizienten Verwaltung von Datenmigrationsaktivitäten. Nach der Einrichtung von Steuerungs- und Worker-VMs können App-Admin-Benutzer Rollen erstellen und neuen Benutzern zuweisen. Dadurch können sich neue Benutzer anmelden, Projekte anzeigen oder verwalten und je nach ihren Berechtigungen weitere Migrationsaktivitäten durchführen.
+
+.Über diese Aufgabe
+Sie müssen als App Admin angemeldet sein, um einen neuen Benutzer hinzuzufügen, einen bestehenden Benutzer zu aktivieren oder zu deaktivieren oder ein Benutzerpasswort zurückzusetzen.
+
+
+
+== Neuen Benutzer hinzufügen
+
+Erstellen Sie einen neuen Benutzer und teilen Sie das temporäre Passwort.
+
+.Schritte
+. Melden Sie sich bei NetApp Data Migrator an.
+. Wählen Sie *Einstellungen* > *Benutzer*, um eine Liste der registrierten Benutzer anzuzeigen.
+. Wählen Sie *Benutzer hinzufügen*.
+. Geben Sie den *Vornamen*, *Nachnamen* und die *E-Mail-Adresse* des neuen Benutzers ein.
+. Falls der neue Benutzer Administratorrechte benötigt, aktivieren Sie das Kontrollkästchen *App Admin*.
+. Wählen Sie *Absenden*.
+. Wählen Sie den Link *Kopieren* (neben dem Passwortfeld) aus, um das temporäre Passwort zu kopieren, das in maskierter Form angezeigt wird.
+. Wählen Sie *Schließen*.
+. Teilen Sie das kopierte temporäre Passwort mit dem neuen Benutzer, der es dann zum Anmelden verwenden kann. Beim ersten Anmelden wird er aufgefordert, sein Passwort zu ändern.
+
+
+
+
+== Einen bestehenden Benutzer deaktivieren
+
+Deaktivieren Sie den Zugriff auf NetApp Data Migrator für andere Benutzer. Dadurch wird verhindert, dass sich Benutzer anmelden können, jedoch werden weder Benutzerdaten noch frühere Migrationsaufträge oder Protokolle, die mit diesem Benutzer verknüpft sind, gelöscht.
+
+.Schritte
+. Wählen Sie das Symbol *Einstellungen* in der Navigationsleiste aus.
+. Wählen Sie die Registerkarte *Benutzer*, um eine Liste der registrierten Benutzer anzuzeigen.
+. Wählen Sie das Symbol *(⋮)* neben den Details des Benutzers aus, dessen Zugriff deaktiviert wird, und wählen Sie dann im Dropdown-Menü *Zugriff deaktivieren* aus.
++
+Der Benutzerstatus ändert sich von *Aktiv* zu *Inaktiv* und die Benutzer können sich nicht mehr bei NetApp Data Migrator anmelden.
+
+
+
+
+
+== Einen Benutzer aktivieren
+
+Den Zugriff auf NetApp Data Migrator für einen deaktivierten Benutzer wiederherstellen, sodass dieser sich anmelden und Aktionen basierend auf seinen zugewiesenen Berechtigungen durchführen kann.
+
+.Schritte
+. Wählen Sie das Symbol *Einstellungen* in der Navigationsleiste aus.
+. Wählen Sie die Registerkarte *Benutzer*, um eine Liste der registrierten Benutzer anzuzeigen.
+. Wählen Sie das Symbol *(⋮)* neben den Details des Benutzers aus, der aktiviert werden soll, und wählen Sie dann im Dropdown-Menü *Zugriff aktivieren* aus.
++
+Der Benutzerstatus ändert sich von *Inaktiv* zu *Aktiv*. Der Benutzer kann sich nun bei NetApp Data Migrator anmelden.
+
+
+
+
+
+== Benutzerpasswort zurücksetzen
+
+Das Passwort eines bestehenden Benutzers zurücksetzen.
+
+
+NOTE: Um das Passwort eines App-Admin-Benutzers zurückzusetzen, wenn kein anderer App-Admin verfügbar ist, wenden Sie sich an ng-ndm-downloads@netapp.com, um das Skript zum Zurücksetzen des Passworts zu erhalten.
+
+.Schritte
+. Wählen Sie das Symbol *Einstellungen* in der Navigationsleiste aus.
+. Wählen Sie die Registerkarte *Benutzer*, um eine Liste der registrierten Benutzer anzuzeigen.
+. Wählen Sie das Symbol *(⋮)* neben den Details des Benutzers aus, dessen Passwort zurückgesetzt werden muss, und wählen Sie dann *Passwort zurücksetzen* aus dem Dropdown-Menü.
++
+Es erscheint eine Meldung, die bestätigt, dass das Zurücksetzen des Passworts erfolgreich war.
+
+. Klicken Sie auf den Link *Kopieren* (neben dem Passwortfeld), um das temporäre Passwort zu kopieren, das in maskierter Form angezeigt wird.
+. Teilen Sie dem Benutzer das kopierte temporäre Passwort mit.
+

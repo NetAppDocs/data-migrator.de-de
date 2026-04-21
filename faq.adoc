@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: faq.html 
+keywords: frequently asked questions, troubleshooting, connection errors, authentication, protocol errors 
+summary: Hier finden Sie Antworten auf häufig gestellte NetApp Data Migrator-Fragen zu Verbindungsfehlern, Authentifizierungsfehlern, Protokollproblemen und Berechtigungsfehlern. 
+---
+= Häufig gestellte Fragen zu NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sollten Sie bei der Verwendung von NetApp Data Migrator auf ein Problem stoßen, können Sie es möglicherweise schnell beheben, indem Sie diese häufig gestellten Fragen (FAQ) anderer Benutzer durchgehen.
+
+.Was kann die Fehler NT_STATUS_IO_TIMEOUT / NT_STATUS_ACCESS_DENIED / NT_STATUS_HOST_UNREACHABLE / NT_STATUS_UNSUCCESSFUL verursachen?
+Dieser Fehler kann auftreten, wenn Sie falsche Hostinformationen eingeben. Stellen Sie sicher, dass der Server-Hostname oder die IP-Adresse korrekt ist und der Server erreichbar ist. Überprüfen Sie Ihre Netzwerkverbindung und dass Ihr DNS aufgelöst werden kann, falls erforderlich.
+
+.Was kann den Fehler „Falsche Anmeldeinformationen – NT_STATUS_LOGON_FAILURE“ verursachen?
+Falsche Benutzernamen oder Passwörter können zu Authentifizierungs- und Anmeldefehlern führen. Stellen Sie sicher, dass Sie die korrekten Anmeldedaten eingegeben haben.
+
+.Was bedeutet „Nicht unterstützte Protokollversionen von NFS oder SMB“?
+Dies bedeutet, dass die vom Dateiserver verwendete Protokollversion nicht unterstützt wird. Überprüfen Sie die Kompatibilität der Protokollversionen und aktualisieren oder konfigurieren Sie den Dateiserver gegebenenfalls.
+
+.Was kann die Fehlermeldung „Ungültiger Exportpfad“ verursachen?
+Stellen Sie sicher, dass der Exportpfad korrekt eingegeben wurde und auf dem Server existiert.
+
+.Was kann die Fehlermeldung „Ungültiges Arbeitsverzeichnis“ verursachen?
+Prüfen Sie, ob Sie das richtige Arbeitsverzeichnis für den ausgewählten Exportpfad angegeben haben.
+
+.Warum erhalte ich eine Fehlermeldung wegen fehlender Schreibberechtigung im Arbeitsverzeichnis?
+Dieser Fehler tritt auf, wenn der korrekte Exportpfad und das korrekte Arbeitsverzeichnis angegeben sind, die erforderlichen Schreibberechtigungen jedoch fehlen. Ohne die korrekten Schreibberechtigungen schlägt die Vorabprüfung des Dateiservers fehl, und der Benutzer kann keine Aufträge ausführen. Stellen Sie sicher, dass der Benutzer, bei dem der Fehler auftritt, über die erforderlichen Schreibberechtigungen verfügt.

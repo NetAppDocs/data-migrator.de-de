@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: port-requirements.html 
+keywords: port requirements, TCP, UDP, control plane, worker, communication 
+summary: Portanforderungen für NetApp Data Migrator, einschließlich der erforderlichen TCP- und UDP-Ports für die Steuerungsebene und die Worker-Kommunikation. 
+---
+= Portanforderungen für NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie müssen sicherstellen, dass bestimmte TCP-Ports geöffnet sind, um die Kommunikation zwischen den virtuellen Maschinen (VMs) der Steuerungsebene und den Worker-VMs in NetApp Data Migrator zu ermöglichen.
+
+
+
+== Steuerungsebenen-Ports
+
+[cols="1,1,1,1a"]
+|===
+| Service | TCP-Port | Aus | Zu 
+
+
+| Temporal Server | 7233 oder 7234 | Arbeiter und Kunden  a| 
+Steuerungsebene
+
+
+
+| Temporale Benutzeroberfläche | 8080 | Standardport, falls aktiviert  a| 
+Steuerungsebene
+
+
+
+| PostgreSQL (Temporaldatenbank) | 5432 | Zeitliche Dienste (von der Steuerungsebene)  a| 
+Steuerungsebene
+
+
+
+| Redis | 6379 | Worker- oder Control-Plane-Dienste  a| 
+Steuerungsebene
+
+
+
+| API- oder UI-Einspeisepunkt (Ihre Anwendung) | 80 oder 443 | Browser oder ein externer Client  a| 
+Steuerungsebene
+
+
+
+| Grafana | 3000 | Browser  a| 
+Steuerungsebene
+
+|===
+
+
+== Worker-Ports
+
+[cols="1,1,1,1a"]
+|===
+| Service | TCP-Port | Aus | Zu 
+
+
+| Ausgehend zur Steuerungsebene | 7233 | Dienste in der Steuerungsebene  a| 
+Temporales Frontend
+
+
+
+| Ausgehend zur Steuerungsebene | 6379 | Dienste in der Steuerungsebene  a| 
+Redis
+
+
+
+| Ausgehend zur Steuerungsebene | 80 oder 443 | Browser  a| 
+API oder Benutzeroberfläche (wenn Sie es so nennen)
+
+
+
+| Ausgehend an Speicher | 2049 | Worker  a| 
+NFS-Server
+
+*Hinweis*: Geben Sie TCP- oder UDP-Port 111 an, wenn Sie den Portmapper-Dienst für Remote Procedure Calls benötigen.
+
+
+
+| Ausgehend an Speicher | 445 | Worker  a| 
+SMB-Server
+
+|===

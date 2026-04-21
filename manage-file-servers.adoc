@@ -1,0 +1,233 @@
+---
+sidebar: sidebar 
+permalink: manage-file-servers.html 
+keywords: file servers, nfs, smb, worker association, export paths 
+summary: Verwenden Sie NetApp Data Migrator, um Dateiserver hinzuzufügen, zu konfigurieren und zu bearbeiten, die die NFS- oder SMB-Protokolle verwenden. 
+---
+= Dateiserver hinzufügen und verwalten
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie können NetApp Data Migrator verwenden, um Dateiserver hinzuzufügen, zu konfigurieren und zu bearbeiten, die die NFS- oder SMB-Protokolle verwenden.
+
+
+
+== Neuen Dateiserver hinzufügen
+
+Fügen Sie einen neuen NFS- oder SMB-Dateiserver hinzu und konfigurieren Sie die Worker-VMs.
+
+Je nach Systemkonfiguration verwenden Sie die Workflow-Option „Other NAS“ oder „Dell Isilon“.
+
+[role="tabbed-block"]
+====
+.Andere NAS
+--
+.Schritte
+. Wählen Sie im linken Navigationsbereich *Speicherserver* aus.
+. Wählen Sie *Dateiserver* > *+Hinzufügen*.
++
+Es öffnet sich die Seite *Dateiserver*, gefolgt von der Seite *Servertyp*.
+
+. Geben Sie den Servernamen ein und wählen Sie dann als *Servertyp* die Option Other NAS aus.
++
+Die Seite *Zugangsdaten* öffnet sich.
+
+. Geben Sie den *Hostnamen* (oder die IP-Adresse) des NFS- oder SMB-Servers ein.
+. Wenn Sie einen *NFS*-Dateiserver verwenden:
++
+** Geben Sie einen *Benutzernamen* für den Zugriff auf NFS-Dateifreigaben ein.
+** Optional können Sie ein *Passwort* eingeben.
+** Wählen Sie eine *Protokollversion* für NFS aus.
+** Im Bereich *Abrufmechanismus für Exportpfade* wählen Sie *Automatische Erkennung* oder *Manuelles Hochladen*:
++
+*Auto Discover* erkennt automatisch Exportpfade.
+
++
+*Manueller Upload* lädt Exportpfade manuell hoch oder in Umgebungen, in denen *Auto Discover* nicht unterstützt wird, wie beispielsweise beim Google Cloud NetApp Volumes (GCNV) Flex Service. Nach dem Hinzufügen eines Dateiservers <<manually-upload-export-paths,Sie müssen die Exportpfade manuell hochladen>>.
+
+
+
+. Wenn Sie einen *SMB*-Dateiserver verwenden:
++
+** Geben Sie einen *Benutzernamen* für den Zugriff auf SMB-Dateifreigaben ein.
+** Geben Sie ein *Passwort* ein.
+** Wählen Sie eine *Protokollversion* für SMB aus.
+
+
+. Wählen Sie die Registerkarte *Workers* aus.
++
+.. Wählen Sie in der Spalte *Zugeordnet* den Umschalter neben jedem der einen oder mehreren Worker aus, die Sie einem Server zuordnen möchten.
+.. Wählen Sie *Fortfahren*, um eine Vorprüfung zu starten, die testet, ob der oder die ausgewählte(n) Worker eine Verbindung zu NetApp Data Migrator haben.
+
+
+. Nach Abschluss der Vorprüfung sollten Sie alle gemeldeten Fehler beheben. (Weitere Informationen zur Fehlerbehebung finden Sie in den häufig gestellten Fragen (FAQ) zum File Server.)
++
+Wenn die Vorprüfung fehlerfrei abgeschlossen wird, wählen Sie die Registerkarte *Job Config* und anschließend *Finish.* Der Name Ihres File Server erscheint unter der Liste der *File Servers*.
+
++
+Der Status eines Dateiservers wird in der Spalte *Status* der Tabelle *Dateiserver* aufgeführt. Zu den Statustypen gehören:
+
++
+** *Aktiv*: Es liegen keine Fehler vor, und alle Angaben wurden überprüft.
+** *In Bearbeitung:* Die Servervalidierung läuft.
+** *Entwurf*: Es wurden noch keine Worker einem Dateiserver zugeordnet.
+** *Fehler*: Es bestehen Probleme mit den Berechtigungen, es sind keine Pfade verfügbar oder es ist nur / als Exportpfad verfügbar. Diese Probleme können auftreten, wenn Sie bei der Erstellung des Dateiservers die Option *Auto Discovery* für den Exportpfad auswählen.
+
+
+
+
+--
+.Dell Isilon
+--
+.Schritte
+. Wählen Sie im linken Navigationsbereich *Speicherserver* aus.
+. Wählen Sie *Dateiserver* > *+Hinzufügen*.
++
+Es öffnet sich die Seite *Dateiserver*, gefolgt von der Seite *Servertyp*.
+
+. Geben Sie einen *Konfigurationsnamen* für Ihren Isilon-Dateiserver ein.
+. Wählen Sie *Dell Isilon* aus dem Dropdown-Menü *Servertyp* aus.
++
+Der Abschnitt *Management Console* wird geöffnet:
+
+. Geben Sie den *Management-Host* ein (Hostname oder IP-Adresse der Isilon-Managementkonsole).
+. Geben Sie den *Benutzernamen* für den Zugriff auf die Isilon Management API ein.
+. Geben Sie das *Passwort* ein.
+. Wählen Sie *Fortfahren*, um das TLS-Zertifikat vom Isilon-Cluster abzurufen.
+. Überprüfen Sie die im Modal angezeigten *TLS Certificate*-Details:
++
+.. Überprüfen Sie den Aussteller des Zertifikats, die Gültigkeitsdaten und den Fingerabdruck.
+.. Wählen Sie *Akzeptieren*, um dem Zertifikat zu vertrauen und fortzufahren.
+.. Wählen Sie *Ablehnen*, um den Vorgang abzubrechen, wenn Sie dem Zertifikat nicht vertrauen.
+
+
+. Die Seite *Zonen-Anmeldeinformationen* wird geöffnet:
++
+.. Wählen Sie eine oder mehrere *Zugriffszonen* aus den verfügbaren Zonen aus.
+.. Konfigurieren Sie für jede ausgewählte Zone die Protokollzugangsdaten:
+.. Wählen Sie die *NFS-IP-Adresse* aus dem Dropdown-Menü aus.
+.. Geben Sie einen *Benutzernamen* für den Zugriff auf NFS-Exportpfade ein.
+.. Geben Sie die *SMB-IP-Adresse* ein.
+.. Geben Sie einen *Benutzernamen* für den Zugriff auf SMB-Dateifreigaben ein.
+.. Geben Sie ein *Passwort* ein.
+
+
++
+
+NOTE: Wenn eine SmartConnect Service-IP (SSIP) auf dem Isilon-Cluster konfiguriert ist, können Sie den SmartConnect Zonendomänennamen aus der IP-Adresse-Dropdown-Liste auswählen. Bei Verwendung eines SSIP-fähigen Domänennamens verwaltet die Isilon SmartConnect Infrastruktur den Lastausgleich der Verbindungen und löst ihn auf der Speicherebene auf. NetApp Data Migrator führt in dieser Konfiguration keinen zusätzlichen Lastausgleich durch.
+
+. Die Registerkarte *Workers* wird geöffnet:
++
+.. Weisen Sie jeder Zonen- und Protokollkombination Mitarbeiter zu:
++
+Wählen Sie in der Spalte *Zugeordnet* den Umschalter neben jedem der einen oder mehreren Worker aus, die Sie zuordnen möchten.
+
+.. Wählen Sie *Fortfahren*, um eine Vorprüfung zu starten, die testet, ob ein oder mehrere der ausgewählten Worker eine Verbindung zu NetApp Data Migrator und dem Isilon-Dateiserver haben.
+
+
+. Wenn die Vorprüfung abgeschlossen ist, beheben Sie alle gemeldeten Fehler.
++
+Wenn die Vorprüfung fehlerfrei abgeschlossen wird, erscheint der Name Ihres Dateiservers in der Liste der Dateiserver. Das Dropdown-Menü für die angezeigten Dateiserver zeigt die konfigurierten Zonen an.
+
+
+
+--
+====
+
+
+== Export- und Verzeichnispfade manuell hochladen
+
+NetApp Data Migrator ermöglicht es Ihnen, Exportpfade und Verzeichnispfade für die Verwendung bei Datenmigrationen für das NFS-Protokoll manuell hochzuladen. Diese Funktion ist in Umgebungen nützlich, in denen die automatische Erkennung von NFS-Exportpfaden nicht verfügbar ist. Zum Beispiel für die Verwendung mit dem GCNV Flex Service oder wenn Verzeichnispfade anstelle des gesamten Exportpfads migriert werden. Wenn Sie im Bereich *Export Paths Retrieval Mechanism* die Option *Manual Upload* auswählen, müssen Sie die von NetApp Data Migrator bereitgestellte Vorlagendatei herunterladen und ausfüllen, nachdem Sie einen Dateiserver erstellt haben.
+
+
+NOTE: Verwenden Sie diese Option, wenn Sie die Migration auf Verzeichnisebene konfigurieren müssen. Wenn die Migration nur bestimmte Verzeichnisse und nicht ganze Exporte betrifft, geben Sie die Verzeichnispfade direkt in die Excel-Tabelle ein. Dadurch wird sichergestellt, dass der Migrations-Workflow jedes Verzeichnis einzeln verarbeitet, ohne dass Eingaben auf Exportebene erforderlich sind.
+
+.Schritte
+. Wählen Sie im linken Navigationsbereich *Speicherserver* aus.
+. Wählen Sie *Dateiserver* aus.
+. Wählen Sie *Hier klicken, um Export Paths hochzuladen*.
+. Wählen Sie *Vorlage herunterladen*, um eine CSV-Dateivorlage herunterzuladen.
+. Speichern Sie Ihre Exportpfade und Verzeichnispfade in der CSV-Datei.
+. Wählen Sie *Hier klicken, um Exportpfade hochzuladen* und anschließend die CSV-Datei mit Ihren Exportpfaden und Verzeichnispfaden aus.
++
+Die Exportpfade und Verzeichnispfade werden unter *Pfade* angezeigt.
+
+. Falls Sie weitere Exportpfade oder Verzeichnispfade hinzufügen müssen, fügen Sie diese Ihrer Datei hinzu und wählen Sie anschließend *Exportpfade erneut hochladen*.
+
+
+Nach Abschluss des Uploads können Exportpfade und Verzeichnispfade einen der folgenden Statustypen aufweisen:
+
+* *Gültig*: Der Pfad wurde erfolgreich hochgeladen und Sie können diesen Pfad ein- und aushängen.
+* *Ungültig*: Der Pfad konnte nicht hochgeladen werden.
+* *Deaktiviert*: Der Pfad ist verfügbar, befindet sich aber nicht in der von Ihnen hochgeladenen Datei.
+
+
+
+
+== Details zum Dateiserver bearbeiten
+
+Bei Bedarf können Sie Änderungen an einem zuvor konfigurierten Dateiserver vornehmen.
+
+Bearbeiten Sie die Dateiserverdetails mithilfe der Workflow-Option „Other NAS“ oder „Dell Isilon“.
+
+[role="tabbed-block"]
+====
+.Andere NAS
+--
+.Schritte
+. Wählen Sie das Aktionsmenü neben dem Dateiserver aus, den Sie bearbeiten möchten.
+. Wählen Sie *Dateiserver bearbeiten*. Wenn Sie für *Upload-Exportpfad abrufen* die Option *Manueller Upload* ausgewählt haben, werden nur gültige Pfade angezeigt.
+. Wählen Sie die Registerkarte *Servertyp* aus, nehmen Sie die gewünschten Änderungen vor und wählen Sie dann *Weiter* aus.
+. Wählen Sie die Registerkarte *Anmeldeinformationen* aus, nehmen Sie die erforderlichen Änderungen vor und wählen Sie dann *Weiter*.
+. Wählen Sie die Registerkarte *Workers*, nehmen Sie die erforderlichen Änderungen vor und wählen Sie dann *Submit*.
+
+
+--
+.Dell Isilon
+--
+.Schritte
+. Wählen Sie das Aktionsmenü neben dem übergeordneten Dateiserver aus, den Sie bearbeiten möchten.
+. Wählen Sie *Dateiserver bearbeiten*.
+. Wählen Sie die Registerkarte *Servertyp* aus:
++
+.. Aktualisieren Sie den *Konfigurationsnamen*, falls erforderlich.
+.. Aktualisieren Sie *Benutzername* oder *Passwort*, falls erforderlich.
+.. Wählen Sie *Fortfahren*.
+
+
++
+
+NOTE: Sie können den *Server Type* (Dell Isilon) und den *Management Host* nicht ändern.
+
+. Wählen Sie die Registerkarte *Zonenanmeldeinformationen* aus:
++
+.. Fügen Sie neue Zonen hinzu, indem Sie zusätzliche Zonen aus der verfügbaren Liste auswählen.
+.. Aktualisieren Sie die Protokollzugangsdaten für jede Zone:
++
+Aktualisieren Sie bei Bedarf die *NFS-IP-Adresse*, den *Benutzernamen* oder das *Passwort*.
+
++
+Aktualisieren Sie bei Bedarf die *SMB-IP-Adresse*, den *Benutzernamen* oder das *Passwort*.
+
+.. Wählen Sie *Fortfahren*.
+
+
+. Wählen Sie die Registerkarte *Workers* aus:
++
+.. Aktualisieren Sie die Worker-Zuweisungen für jede Zone und jedes Protokoll, indem Sie die Worker in der Spalte *Zugeordnet* ein- oder ausschalten.
+.. Wählen Sie *Fortfahren*, um die Vorabprüfung für alle neu zugewiesenen Worker durchzuführen.
+
+
+. Wählen Sie die Registerkarte *Job Config* aus:
++
+.. Aktualisieren Sie gegebenenfalls das *Arbeitsverzeichnis*.
+.. Wählen Sie *Fertigstellen*.
+
+
+
+
+--
+====

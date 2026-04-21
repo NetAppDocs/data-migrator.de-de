@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: configure-data-migrator.html 
+keywords: configure, log, in, project, create, app admin 
+summary: 'Melden Sie sich als App Admin (Administrator) mit den Standardanmeldeinformationen an und aktualisieren Sie Ihren Benutzernamen und Ihr Passwort.' 
+---
+= Konfigurieren Sie NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Nach der Installation von NetApp Data Migrator müssen Sie sich als App Admin (Administrator) mit dem Standardbenutzernamen und -passwort anmelden.
+
+
+
+== Melden Sie sich bei NetApp Data Migrator an.
+
+Melden Sie sich bei NetApp Data Migrator an, ändern Sie dann Ihre Anmeldedaten und erstellen Sie Ihr erstes Projekt.
+
+.Schritte
+. Öffnen Sie einen Webbrowser und navigieren Sie zu NetApp Data Migrator:
++
+`\https://<private_IP_address>/`
+
+. Geben Sie auf der *Willkommensseite* den Standardbenutzernamen im Feld *Benutzername/E-Mail* ein.
+. Geben Sie das Standardpasswort im Feld *Passwort* ein.
+. Wählen Sie *Login*.
++
+Die Seite *Passwort zurücksetzen* wird geöffnet.
+
+. Geben Sie ein neues Passwort ein, das die folgenden Sicherheitsanforderungen erfüllt:
++
+** Enthält mindestens 8 Zeichen
+** Enthält mindestens einen Großbuchstaben
+** Enthält mindestens einen Kleinbuchstaben
+** Enthält mindestens eine Zahl
+** Enthält mindestens ein Sonderzeichen
+
+
+. Wählen Sie *Passwort zurücksetzen*. Die Seite *Ihre Daten* wird geöffnet.
+. Geben Sie Ihren *Vornamen*, *Nachnamen* und Ihre *E-Mail-Adresse* ein.
+. Wählen Sie *Fortfahren*. Die Seite *Neues Projekt erstellen* wird geöffnet.
+. Wählen Sie *Projekt erstellen* und geben Sie anschließend die folgenden Details ein:
++
+** *Projektname*: Geben Sie einen aussagekräftigen Namen für Ihr Projekt ein.
+** *Projektbeschreibung (Optional)*: Sie können zusätzliche Details zu Ihrem Projekt angeben.
+
+
+. Wählen Sie *Create*.
++
+Das neue Projekt erscheint in der Benachrichtigungsleiste oben in der NetApp Data Migrator-Steuerungsebene.
+
+
+
+
+
+== Ausloggen von NetApp Data Migrator
+
+Nachdem Sie sich von NetApp Data Migrator ausgeloggt haben, müssen Sie beim nächsten Anmelden Ihre neu erstellten Zugangsdaten (E-Mail-Adresse und Passwort) verwenden.
+
+.Schritte
+. Wählen Sie das Symbol *Benutzer* (neben *Einstellungen*).
+. Wählen Sie *ausloggen*. Die *Welcome*-Seite wird geöffnet.
+. Geben Sie unter *E-Mail* und *Passwort* die E-Mail-Adresse und das Passwort ein, die Sie bei der Registrierung angegeben haben <<log-in,angemeldet>>.
+. Wählen Sie *Login*.
+
+
+.Was kommt als Nächstes?
+Nachdem Sie gelernt haben, wie Sie NetApp Data Migrator konfigurieren, können Sie link:manage-projects.html["Verwenden Sie NetApp Data Migrator"].

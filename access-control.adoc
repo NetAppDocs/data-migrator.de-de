@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: access-control.html 
+keywords: role-based access control, rbac, user permissions, app admin, project admin 
+summary: 'NetApp Data Migrator verwendet rollenbasierte Zugriffssteuerung (RBAC) zur Verwaltung von Benutzerberechtigungen, wodurch App Admin-Benutzer anderen Benutzern Rollen zuweisen können.' 
+---
+= Verwalten Sie die Zugriffskontrolle für NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Data Migrator verwendet rollenbasierte Zugriffssteuerung (RBAC) zur Verwaltung von Benutzerberechtigungen. RBAC ermöglicht App Admin-Benutzern (Administratoren), anderen Benutzern eine der folgenden drei Rollen zuzuweisen, um eine sichere Zugriffskontrolle und einen effizienten Betrieb zu gewährleisten. App Admin-Benutzer gewähren anderen Benutzern Berechtigungen basierend auf deren Verantwortlichkeiten und Zugriffsanforderungen.
+
+* *App Admin*: Diese Zugangsstufe ermöglicht es Benutzern, die allgemeinen Systemeinstellungen, Benutzerrollen und Zugriffsberechtigungen zu verwalten.
+* *Projektadministrator*: Diese Zugangsstufe ermöglicht es Benutzern, spezifische Migrationsprojekte zu verwalten, einschließlich der Konfiguration und Ausführung von Jobs.
+* *Projektbetrachter*: Diese Zugangsstufe ermöglicht Benutzern Lesezugriff auf den Migrationsfortschritt, Protokolle und Berichte. Diese Rolle ist für Benutzer vorgesehen, die den Fortschritt von Datenmigrationsprojekten überwachen und beobachten müssen, aber keine Aktionen durchführen sollen, die ein Projekt verändern oder beeinträchtigen könnten.
+
+
+Die folgende Tabelle bietet eine Übersicht über Aktionen und Benutzerrollenberechtigungen.
+
+[cols="1,2,1,1,1a"]
+|===
+| Aktion | Beschreibung | App-Administrator | Projektadministrator | Projektbetrachter 
+
+
+| Agentenbereitstellung | Der Benutzer kann auf *Anleitung zum Einrichten des Mitarbeiters anzeigen* zugreifen. | Ja | Ja  a| 
+Nein
+
+
+
+| Einen Benutzer erstellen | Benutzer können neue Benutzerkonten erstellen | Ja | Nein  a| 
+Nein
+
+
+
+| Benutzer auflisten | Der Benutzer kann eine Liste der Benutzer einsehen. | Ja | Ja  a| 
+Ja
+
+
+
+| Konfiguration verwalten | Der Benutzer kann die Konfigurationseinstellungen verwalten | Ja | Ja  a| 
+Nein
+
+
+
+| Auftrag verwalten | Der Benutzer kann Migrationsaufträge verwalten. | Ja | Ja  a| 
+Nein
+
+
+
+| Berichte | Der Benutzer kann auf Optionen zum Herunterladen von Berichten zugreifen | Ja | Ja  a| 
+Ja
+
+
+
+| Projekt aktualisieren | Der Benutzer kann ein Projekt bearbeiten | Ja | Ja  a| 
+Nein
+
+
+
+| Ein Projekt ansehen | Der Benutzer kann auf die Projektlistenseite zugreifen | Ja | Ja  a| 
+Ja
+
+
+
+| Ein Projekt erstellen | Der Benutzer kann ein Projekt erstellen | Ja | Nein  a| 
+Nein
+
+
+
+| SMTP speichern | Der Benutzer kann SMTP-Details hinzufügen oder bearbeiten. | Ja | Nein  a| 
+Nein
+
+|===

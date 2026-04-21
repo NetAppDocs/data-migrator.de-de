@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: configure-bulk-discover.html 
+keywords: bulk discover, storage inventory, export paths, data scan, migration planning 
+summary: Konfigurieren Sie Bulk Discover in NetApp Data Migrator, um vor Beginn der Datenmigration eine Übersicht Ihrer gesamten vorhandenen Speicherkapazität zu generieren. 
+---
+= Planen Sie Datenmigration in NetApp Data Migrator mithilfe von Bulk Discover
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Konfigurieren Sie Bulk Discover in NetApp Data Migrator, um vor Beginn der Datenmigration schnell einen Überblick über Ihre gesamte vorhandene Speicherkapazität zu erhalten. Ein klares Verständnis Ihrer gespeicherten Dateien und Systemstrukturen kann dazu beitragen, den Datenmigrationsprozess zu optimieren.
+
+.Schritte
+. Melden Sie sich bei NetApp Data Migrator an.
+. Wählen Sie *Speicherserver* > *Dateiserver*, um eine Liste der verfügbaren Dateiserver anzuzeigen.
+. Wählen Sie den Namen des Servers aus, auf dem Sie eine Massenerkennung durchführen möchten, und wählen Sie dann *Bulk Discover*.
+. Wählen Sie *Job Schedule* und anschließend eine der folgenden Optionen:
++
+** *Starten Sie jetzt*, wenn Sie die Erkennung sofort beginnen möchten.
+** *Datum und Uhrzeit (UTC) festlegen*, wenn Sie den Erkennungsprozess planen möchten. Geben Sie Datum und Uhrzeit ein, zu der der Job beginnen soll.
+
+
+. Wählen Sie eine der folgenden Optionen für *Alternative Datenströme scannen*:
++
+** Wählen Sie *Ja*, wenn NetApp Data Migrator die mit Ihren Dateien verknüpften alternativen Datenströme (ADS) ermitteln soll.
+** Wählen Sie *Nein*, wenn Sie nicht möchten, dass NetApp Data Migrator die mit Ihren Dateien verknüpften ADS ermittelt.
+
+
+. Geben Sie im Textfeld *Ausgeschlossene Pfadmuster* die Pfade ein, die Sie vom Erkennungsprozess ausschließen möchten. Sie sollten jeden Pfad in einer neuen Zeile eingeben.
+. Verwenden Sie die *Suchleiste*, um bestimmte Exportpfade (innerhalb der aufgelisteten Pfade) zu finden, die Sie in den Discovery-Prozess einbeziehen möchten, und aktivieren Sie dann das Kontrollkästchen neben dem/den *Exportpfad(en)*.
++
+Nicht mehr erreichbare Exportpfade sind deaktiviert und können im Erkennungsprozess nicht verwendet werden. Dies betrifft beispielsweise Exportpfade, die gelöscht wurden oder nicht mehr in der Ausgabe von  `showmount -e` für NFS erscheinen, sowie Pfade, die bei der SMB-Freigabeauflistung nicht zurückgegeben werden.
+
+. Wählen Sie *Senden*. Daraufhin erscheint eine Benachrichtigung, die bestätigt, dass der *Bulk Discover Job* erstellt wurde. Wählen Sie in dieser Meldung den Link *View Job Listing*, um die Seite *Job Config List* anzuzeigen, auf der Ihr neu erstellter Job in der Tabelle *Job Listings* aufgeführt ist.
+

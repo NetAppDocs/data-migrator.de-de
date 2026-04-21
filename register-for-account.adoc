@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: register-for-account.html 
+keywords: netapp, data, migrator, new, support, register, account 
+summary: Wenn Sie ein neuer NetApp-Kunde sind, müssen Sie ein NetApp-Konto erstellen und den Registrierungsprozess abschließen. 
+---
+= Registrieren Sie sich für ein NetApp Data Migrator-Konto
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie ein neuer NetApp-Kunde sind, müssen Sie ein NetApp-Konto erstellen und den Registrierungsprozess abschließen. Wenn Sie bereits ein NetApp-Konto besitzen, können Sie zu link:deploy-control-plane-and-linux-workers.html["Bereitstellung der Steuerungsebene und der Linux-Worker-VMs für NetApp Data Migrator"] fortfahren.
+
+
+NOTE: Es kann bis zu einem Arbeitstag dauern, bis Ihr neues NetApp Support-Site-Konto von *Gastzugriff* auf *Vollzugriff* hochgestuft wird.
+
+.Schritte
+. Registrieren Sie sich für ein Konto auf der link:https://mysupport.netapp.com/site/user/registration["NetApp Support Site"^] mit Ihrer geschäftlichen E-Mail-Adresse.
+. Wählen Sie *Absenden*.
+. Bestätigen Sie die Registrierung, indem Sie das Ihnen per E-Mail zugesandte Einmalpasswort eingeben.
+. Geben Sie auf der Seite zum Abschluss der Registrierung die erforderlichen Daten an:
++
+.. Wählen Sie für die Benutzerzugriffsebene *NetApp Customer/End User* aus.
+.. Geben Sie im Feld Seriennummer  `NDMNSSREG` ein.
+
+
+. Wählen Sie *Absenden*. Ein Bestätigungsfenster erscheint, das anzeigt, dass die Benutzerregistrierung erfolgreich übermittelt wurde.
+
+
+Sollten Sie während der Registrierung auf Probleme stoßen oder den Status Ihrer Registrierung überprüfen wollen, link:https://mysupport.netapp.com/site/help["Support-Ticket öffnen"^].
+
+.Was kommt als Nächstes?
+Nachdem Sie gelernt haben, wie Sie sich für ein Konto registrieren, können Sie link:deploy-control-plane-and-linux-workers.html["Stellen Sie die Steuerungsebene und die Linux-Worker-VMs bereit"].

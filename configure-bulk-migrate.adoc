@@ -1,0 +1,153 @@
+---
+sidebar: sidebar 
+permalink: configure-bulk-migrate.html 
+keywords: bulk migrate, data migration, source mapping, destination mapping, export paths 
+summary: Verwenden Sie die Funktion „Massenmigration“ im NetApp Data Migrator, um große Datenmengen von einem Quell- zu einem Zielort zu übertragen. 
+---
+= Führen Sie Datenmigration mit NetApp Data Migrator durch.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Nutzen Sie die Funktionen zur Massenmigration in NetApp Data Migrator, um große Datenmengen von einem Quell- zu einem Zielort zu übertragen.
+
+
+
+== Schritt 1: Massenmigration im NetApp Datenmigrator konfigurieren
+
+Bevor Sie die Server für Bulk Migrate definieren können, müssen Sie die Server für Bulk Migrate definieren.
+
+.Schritte
+. Melden Sie sich bei NetApp Data Migrator an.
+. Wählen Sie *Speicherserver* > *Dateiserver*.
+. Wählen Sie den *Dateiservernamen* aus, für den Sie den Auftrag erstellen möchten.
+. Wählen Sie *Bulk Migrate*.
+
+
+
+
+== Schritt 2: Quell- und Zielzuordnungen hinzufügen
+
+Fügen Sie Quell- und Zielzuordnungen hinzu, um die Quell- und Zielexportpfade für Ihre Datenmigration festzulegen.
+
+.Schritte
+. Wählen Sie den Exportpfad in der Quelle aus, den Sie migrieren möchten.
+. Optional können Sie *Quellverzeichnis hinzufügen* auswählen, wenn Sie eine Migration auf Verzeichnisebene durchführen möchten.
++
+Nachdem Sie *Quellverzeichnis hinzufügen* ausgewählt haben, wird die Verzeichnis-Explorer-Ansicht angezeigt. Diese Ansicht zeigt die Liste der Verzeichnisse auf der Stammebene an. Sie können entweder zum gewünschten Verzeichnis navigieren oder den Pfad des gewünschten Verzeichnisses direkt in die Suchleiste des Explorer-Fensters kopieren und einfügen, um zu diesem Ordner zu gelangen.
+
+. Nachdem Sie das Quellverzeichnis ausgewählt haben, wählen Sie den Zieldateiserver und den Zielexportpfad aus.
+. Optional können Sie das Verzeichnis im Zielexportpfad auswählen.
++
+Wenn Sie im Zielexportpfad kein Verzeichnis auswählen, erfolgt die Migration auf der Stammebene des ausgewählten Exportpfads.
+
+. Nachdem Sie Quell- und Zielpfade ausgewählt haben, wählen Sie *Zuordnung hinzufügen*, um die ausgewählte Zuordnung hinzuzufügen. Sie können mehrere Zuordnungen für verschiedene Exportpfade und Verzeichnisse erstellen.
++
+NetApp Data Migrator verhindert die Auswahl einer Zuordnung, die eine über- oder untergeordnete Verbindung zu einer bestehenden Zuordnung aufweist. Dadurch werden Konflikte während der Migration vermieden.
+
+. Optional können Sie eine Zuordnung löschen oder bearbeiten, indem Sie die Option *Bearbeiten* oder *Löschen* auswählen.
+. Nachdem Sie die Zuordnungen hinzugefügt haben, wählen Sie *Fortfahren*.
+
+
+
+
+== Schritt 3: Massenmigrationsauftrag anpassen
+
+Auf der Seite *Optionen* können Sie verschiedene Einstellungen auswählen, um Ihren Bulk Migrate-Job Ihren Bedürfnissen entsprechend anzupassen.
+
+[cols="1,2a"]
+|===
+| Option | Beschreibung 
+
+
+| Ausgeschlossene Pfadmuster  a| 
+Definiert die spezifischen Dateipfade oder Verzeichnisse, die von der Verarbeitung ausgeschlossen werden sollen. Dies trägt zur Optimierung von Speicher und Leistung bei, indem unnötige Dateien übersprungen werden.
+
+* Sie können mehrere Pfadmuster eingeben, eines pro Zeile.
+* Sie können ein Platzhalterzeichen (`*` eingeben, um mehrere Dateien oder Ordner zuzuordnen.
+* Beispielhafte Ausschlüsse:
++
+** `*/snapshots/*`: Schließt alle Dateien und Ordner innerhalb eines beliebigen Snapshot-Verzeichnisses aus
+** `*/logs/*`: Schließt Protokolldateien aus
+** `*/tmp/*`: Schließt temporäre Dateien aus
+
+
+
+
+
+
+| Inkrementeller Synchronisierungsplan  a| 
+Legt fest, wie oft Daten inkrementell synchronisiert werden. Dadurch wird sichergestellt, dass nur die Änderungen seit der letzten Synchronisierung aktualisiert werden, was die Migrationseffizienz verbessert und die Verarbeitungszeit verkürzt.
+
+* Wählen Sie *Aus*, um die inkrementelle Synchronisierung zu deaktivieren.
+* Wählen Sie *Zeitplan festlegen*, um einen Synchronisierungszeitplan anzugeben. Sie können die Daten stündlich, täglich oder wöchentlich synchronisieren.
+* Wählen Sie *Cron Expression*, wenn Sie ein fortgeschrittener Benutzer sind und einen benutzerdefinierten Synchronisierungszeitplan mithilfe eines Cron-Ausdrucks definieren möchten, um die Synchronisierungszeitpunkte genauer steuern zu können.
+
+
+
+
+| Datei migrieren  a| 
+Wählt die zu migrierenden Dateien anhand ihres letzten Änderungsdatums aus.
+
+* Wählen Sie *Alle*, um alle Dateien zu migrieren, unabhängig vom Änderungsdatum.
+* Wählen Sie *Dateien ausschließen, die älter als (UTC) sind*, um Dateien auszuschließen, die älter als ein bestimmtes Datum sind.
+
+
+
+
+| a-time (Zugriffszeit) beibehalten  a| 
+Behält den ursprünglichen Dateizugriffszeitstempel bei, anstatt ihn auf den Migrationszeitpunkt zu aktualisieren.
+
+
+
+| Berechtigungen beibehalten  a| 
+Behält die ursprünglichen Datei- und Verzeichnisberechtigungen der Quelldatei am Zielort bei.
+
+* Wählen Sie *Aktiviert*, um die ursprünglichen Berechtigungen, einschließlich Eigentümer, Gruppe und Zugriffsrechte (Zugriffskontrolllisten für SMB, Modusbits für NFS), von einer Quelle zu einem Ziel beizubehalten.
+* Wählen Sie *Deaktiviert*, um die Beibehaltung von Berechtigungen zu überspringen. NetApp Data Migrator migriert Dateien mit den standardmäßigen Zielberechtigungen, was bei der Migration zwischen inkompatiblen Dateisystemen hilfreich ist.
+
+
+
+
+| Dateien überspringen, die zuletzt geändert wurden  a| 
+Legt Dateien aus einem bestimmten Zeitraum (in Minuten, Stunden oder Tagen) fest, die von Ihrer Migration ausgeschlossen werden sollen. Dies hilft, Dateninkonsistenzen zu vermeiden, indem sichergestellt wird, dass aktiv bearbeitete Dateien nicht während eines Updates übertragen werden.
+
+
+
+| GID-/UID-Zuordnung hochladen  a| 
+Lädt eine Gruppen-ID- (GID) oder Benutzer-ID- (UID) Zuordnungsdatei hoch, um die korrekte Dateibesitzstruktur während der Migration beizubehalten. Die hochgeladene Datei muss dem im bereitgestellten Template angegebenen Format entsprechen.
+
+. Wählen Sie *Vorlage herunterladen*, um ein Beispieldateiformat herunterzuladen.
+. Wählen Sie *Datei auswählen*, um die Zuordnungsdatei von Ihrem lokalen System auszuwählen.
+. Wählen Sie *Hochladen*, um die Zuordnung anzuwenden.
+
+
+
+
+| SID-Zuordnung hochladen  a| 
+Lädt eine Datei zur Zuordnung von Sicherheitskennungen (SID) hoch. Die SID-Zuordnung stellt sicher, dass Benutzer- und Gruppenberechtigungen beim Migrieren oder Synchronisieren von Dateien zwischen Systemen korrekt erhalten bleiben. Die hochgeladene Datei muss dem Format der bereitgestellten Vorlage entsprechen, die Sie herunterladen können.
+
+. Wählen Sie *Vorlage herunterladen*, um ein Beispieldateiformat herunterzuladen.
+. Wählen Sie *Datei auswählen*, um die Zuordnungsdatei von Ihrem lokalen System auszuwählen.
+. Wählen Sie *Hochladen*, um die Zuordnung anzuwenden.
+
+
+|===
+Nachdem Sie Ihre Optionen ausgewählt haben, wählen Sie *Weiter*, um die Seite *Überprüfen und Absenden* zu öffnen.
+
+
+
+== Schritt 4: Überprüfen und absenden
+
+Überprüfen Sie Ihre Einstellungen und fahren Sie dann mit der Massenmigration fort.
+
+.Schritte
+. Überprüfen Sie den *Vorabprüfungsstatus* Ihres Auftrags. Stellen Sie sicher, dass der Quellpfad die korrekten Daten enthält und bestätigen Sie, dass der Zielpfad über ausreichend Speicherplatz und Zugriffsberechtigungen verfügt.
+. Wählen Sie *Absenden*, um einen neuen Migrationsauftrag zu erstellen.
++
+Die Bestätigungsmeldung *Massenmigrationsauftrag wurde erstellt* wird angezeigt.
+
+. Wählen Sie den Link *Stellenanzeige anzeigen* neben der Benachrichtigungsnachricht aus, um die Seite *Stellenkonfigurationsliste* zu öffnen, auf der Ihr neuer Job aufgeführt ist.
+

@@ -1,0 +1,291 @@
+---
+sidebar: sidebar 
+permalink: manage-jobs.html 
+keywords: job management, discovery jobs, migration jobs, cutover jobs, job runs 
+summary: Nutzen Sie die Jobverwaltungsfunktionen in NetApp Data Migrator, um Discovery-, Migrations- und Cutover-Jobs sowie Jobläufe zu initiieren und zu verfolgen. 
+---
+= Verwalten Sie Aufträge und Auftragsläufe in NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Nutzen Sie die Jobverwaltungsfunktionen in NetApp Data Migrator, um Ihre *Discovery*-, *Migration*- und *Cutover*-Jobs und Jobläufe zu initiieren und zu verfolgen.
+
+
+NOTE: Führen Sie Migrations- und Umstellungsaufträge nicht gleichzeitig aus. Stellen Sie sicher, dass jeweils nur ein Auftrag aktiv ist.
+
+
+
+== Jobkonfigurationsliste anzeigen
+
+Die Seite *Auftragskonfigurationsliste* bietet eine umfassende Übersicht aller migrationsbezogenen Aufträge. Nutzen Sie diese Seite, um den Status und Fortschritt von *Erkennungs-*, *Migrations-* und *Umstellungs-*Aufträgen zu überwachen und zu verwalten.
+
+.Schritte
+. Melden Sie sich bei NetApp Data Migrator an.
+. Wählen Sie *Jobs* > *Job Config List*.
++
+Es erscheint die Tabelle *Stellenangebote*, die folgende Informationen enthält:
+
++
+** *Quelle*: Der Speicherort des Quelldateiservers.
+** *Ziel*: Die Details zum Zieldateiserver und zum Exportpfad für Migrationsaufträge.
+** *Protokoll*: Das vom Job verwendete Protokoll (NFS oder SMB).
+** *Nächster Zeitplan*: Der nächste geplante Ausführungszeitpunkt (falls zutreffend).
+** *Ausführungen*: Die Anzahl der Ausführungen des Jobs.
+** *Typ*: Der Auftragstyp (Erkennung, Migration oder Umstellung).
+** *Status*: Der aktuelle Status eines Jobs kann entweder Aktiv oder Inaktiv sein. Jobs, die manuelle Exportpfade mit einem ungültigen oder deaktivierten Status verwenden, werden automatisch inaktiv. Weitere Informationen finden Sie unter link:manage-file-servers.html["Dateiserver hinzufügen und verwalten"].
+** *Aktualisiert am*: Zeitstempel der Jobaktualisierung.
++
+Jobs, die manuelle Exportpfade oder die Exportpfaddatei verwenden, werden später erneut hochgeladen. Alle zuvor ausgeführten Jobs, die mit einem nun ungültigen oder deaktivierten Pfad verknüpft sind, werden automatisch inaktiv.
+
+
+
+. Wählen Sie *Filter*, um die Jobs in der Tabelle „Jobs Listings“ zu sortieren. Sie können eine Kombination von Filtern basierend auf den folgenden Optionen auswählen:
++
+** Quelle
+** Ziel
+** Protokoll
+** Typ
+** Status
+
+
+. Wählen Sie *Alle löschen*, um die bereits auf Ihre Stellenanzeigen angewendeten Filter zu entfernen.
+
+
+
+
+== Einen Job aktivieren oder deaktivieren
+
+In der Tabelle „Job Listings“ können Sie einen Job aktivieren oder deaktivieren.
+
+.Schritte
+. Einen Job aktivieren:
++
+.. Wählen Sie *Jobs* > *Job Config List*.
+.. Wählen Sie in der Tabelle „Stellenangebote“ das Aktionsmenü neben dem Job aus, den Sie aktivieren möchten.
+.. Wählen Sie *Aktivieren*. Der Auftragsstatus ändert sich zu Aktiv.
+
+
+. Einen Job deaktivieren:
++
+.. Wählen Sie *Jobs* > *Job Config List*.
+.. Wählen Sie in der Tabelle „Stellenangebote“ das Aktionsmenü neben dem Job aus, den Sie deaktivieren möchten.
+.. Wählen Sie *Deaktivieren*. Der Auftragsstatus ändert sich in Inaktiv, und die Ausführung wird angehalten, bis Sie den Auftrag wieder aktivieren.
+
+
+
+
+
+
+== Jobkonfigurationen bearbeiten
+
+.Schritte
+. Wählen Sie *Jobs* > *Job Config List*.
+. <<view-job-details,Öffnen Sie die Seite „Jobdetails“>> für den Job, den Sie bearbeiten möchten.
+. Wählen Sie *Konfiguration anzeigen/bearbeiten*.
+. Bearbeiten Sie die Jobkonfiguration:
++
+[role="tabbed-block"]
+====
+.Entdeckungsjob
+--
+** Ausgeschlossene Pfadmuster hinzufügen oder entfernen
+** Einen Joblauf planen
+
+
+--
+.Migrationsauftrag
+--
+** Bearbeiten Sie eine beliebige Joboption
+** Zuordnungen hinzufügen oder entfernen
+** Einen Joblauf planen
+
+
+--
+====
+. Wählen Sie *Speichern*. Die neue Konfiguration wirkt sich auf zukünftige Jobausführungen aus.
+
+
+
+NOTE: Änderungen an der Konfiguration, wie beispielsweise das Deaktivieren der Beibehaltung von Berechtigungen, nach Abschluss der Basismigration können bei nachfolgenden Migrationen zu einem inkonsistenten Zustand führen. Anstatt die Konfiguration zu ändern, sollten Sie den aktuellen Auftrag löschen und einen neuen Auftrag starten.
+
+
+
+== Fehlerhafte Dateien und Verzeichnisse erneut ausführen
+
+Falls ein Migrationsauftrag aufgrund vorübergehender Probleme wie Netzwerk-Timeouts oder Berechtigungsproblemen mit Fehlern abgeschlossen wird, können Sie die Wiederholungsfunktion verwenden, um nur die fehlgeschlagenen Elemente erneut zu verarbeiten, ohne die gesamte Migration erneut auszuführen.
+
+.Schritte
+. Wählen Sie *Jobs* > *Job Config List*.
+. Wählen Sie in der Tabelle *Job Listings* das Aktionsmenü neben dem Job aus, der fehlgeschlagene Elemente enthält.
+. Wählen Sie *Details* > *Letzte Fehler wiederholen* > *Mit Wiederholung fortfahren*, um den Wiederholungsvorgang zu starten.
+
+
+
+
+== Einen Job löschen
+
+.Schritte
+. Wählen Sie *Jobs* > *Job Config List*.
+. Wählen Sie in der Tabelle *Stellenangebote* das Aktionsmenü neben dem Job aus, den Sie löschen möchten.
+. Wählen Sie *Löschen* > *Löschen*.
++
+
+NOTE: Sie können einen Auftrag nur löschen, wenn kein aktiver Lauf vorhanden ist.
+
+
+
+
+
+== Stellenbeschreibung ansehen
+
+Auf der Seite *Auftragskonfigurationsliste* können Sie auf die Seite *Auftragsdetails* zugreifen, um weitere Details zu einzelnen Aufträgen anzuzeigen, wie zum Beispiel:
+
+* Auftragsart (Erkennung, Migration oder Umstellung)
+* Anzahl der gefundenen Dateien und Verzeichnisse
+* Verstrichene Zeit
+* Daten entdeckt
+* Jobkonfiguration
+
+
+.Schritte
+. Wählen Sie *Jobs* > *Job Config List*.
+. In der Tabelle *Stellenangebote* wählen Sie das Aktionsmenü neben einem Job und anschließend *Details*.
+
+
+
+
+== Jobverlauf anzeigen
+
+Auf der Seite *Auftragsdetails* liefert Ihnen die Tabelle *Ausführungsverlauf* Informationen zu früheren Auftragsausführungen und zum Auftragsstatus.
+
+Zu den Migrations- und Erkennungsauftragsstatustypen gehören:
+
+* *Bereit*: Ein Job ist zur Ausführung eingeplant.
+* *Wird ausgeführt*: Ein Job befindet sich im Status „Wird ausgeführt“.
+* *Pausiert*: Ein Joblauf wurde manuell oder durch NetApp Data Migrator pausiert. Beispielsweise kann ein Job den Status „Pausiert“ erhalten, wenn ein Worker während der Jobausführung ausfällt.
+* *Abgeschlossen*: Ein Auftrag ist abgeschlossen.
+* *Fehler*: Bei der Ausführung eines Jobs ist ein schwerwiegender Fehler aufgetreten.
+* *Fehlgeschlagen*: Wenn ein Worker während der Ausführung eines Jobs offline geht, kann der Job in den Status „Fehlgeschlagen“ wechseln.
+
+
+Zu den Übergangsstatusarten gehören:
+
+* *Blockiert*: Der Auftrag wartet auf eine Benutzerantwort.
+* *Abgelehnt*: Der Auftrag wurde von einem Nutzer geprüft und abgelehnt.
+* *Genehmigt*: Der Auftrag wurde von einem Benutzer geprüft und genehmigt.
+* *Beendet*: Der Job wurde angehalten.
+
+
+
+
+== Job-Run-Operationen verwalten
+
+Auf der Seite *Auftragsdetails* können Sie die Aktionen *Starten*, *Stoppen*, *Pausieren* und *Fortsetzen* eines Auftrags verwalten. Mit der Funktion *Pausieren* können Sie einen laufenden Auftrag vorübergehend anhalten, ohne ihn abzubrechen. Anschließend können Sie den Auftrag an der Stelle fortsetzen, an der er pausiert wurde. Diese Funktion ist hilfreich, wenn Sie Systemressourcen freigeben oder Probleme beheben müssen, ohne den Fortschritt zu verlieren.
+
+.Schritte
+. Auf der Seite *Auftragsdetails* wählen Sie in der Tabelle *Ausführungsverlauf* das Aktionsmenü neben einem laufenden Auftrag aus.
+. Einen Joblauf anhalten oder fortsetzen:
++
+.. Wählen Sie *Pause*.
+.. Um den Joblauf fortzusetzen, wählen Sie *Fortsetzen*.
++
+Der Jobstatus ändert sich zu *Wird ausgeführt* und der Job wird an dem Schritt fortgesetzt, an dem er angehalten wurde.
+
+
+
+. Einen Joblauf stoppen oder starten:
++
+Mit der Option „Stopp“ können Sie einen laufenden Joblauf endgültig beenden. Dies ist sinnvoll, wenn ein Joblauf nicht mehr benötigt wird. Ein gestoppter Joblauf kann nicht fortgesetzt werden, Sie haben jedoch die Möglichkeit, einen neuen Joblauf von Anfang an zu starten.
+
++
+.. Wählen Sie *Stopp*.
++
+Der Job-Ausführungsstatus ändert sich zu *Beendet*.
+
+.. Um einen neuen Joblauf zu starten, wählen Sie *Adhoc Run*.
++
+Der Job-Ausführungsstatus ändert sich zu *Wird ausgeführt*.
+
+
+
+
+
+
+
+== Zugriff auf Jobausführungsdetails
+
+Über die Tabelle *Ausführungsverlauf* gelangen Sie zur Seite *Jobausführungsdetails*, auf der Sie weitere Details zu Ihren Jobausführungen einsehen können.
+
+.Schritte
+. Auf der Seite *Auftragsdetails* wählen Sie in der Tabelle *Ausführungsverlauf* das Aktionsmenü neben einem Auftragslauf aus.
+. Wählen Sie *Details*, um die Seite *Jobausführungsdetails* anzuzeigen, die folgende Informationen enthält:
++
+** *Erkennung/Datenmigration*: Art und Status des Joblaufs.
+** *Dateien*: Die Anzahl der während des Erkennungsvorgangs gefundenen Dateien.
+** *Verzeichnisse*: Die Anzahl der während des Suchvorgangs gefundenen Verzeichnisse.
+** *Verstrichene Zeit*: Wie lange der Discovery-Prozess gedauert hat.
+** *Gefundene Daten*: Die Gesamtgröße der gefundenen Dateien.
+** *Arbeiter*: Die Anzahl der dem Auftrag zugewiesenen Arbeiter.
+** *Aufgaben*: Die Anzahl der ausgeführten Aufgaben.
+** *Aufgabenstatusanzeigen*:
++
+*** *Ausstehend*: Die Anzahl der Aufgaben, die auf ihre Ausführung warten.
+*** *Aktuell ausgeführt*: Die Anzahl der derzeit laufenden Tasks.
+*** *Abgeschlossen*: Die Anzahl der Aufgaben, die erfolgreich abgeschlossen wurden.
+*** *Fehlerhaft*: Die Anzahl der Aufgaben, bei denen während der Ausführung Probleme aufgetreten sind.
+
+
+** *Job Name*: Der Name, der dem Job zugewiesen wurde.
+** *Quellpfad*: Der Pfad zu der Datei, die zur Datenermittlung verwendet wird.
+** *Protokoll*: Das zur Erkennung verwendete Protokoll (NFS oder SMB).
++
+Die Kachel unten rechts auf der Seite *Jobausführungsdetails* zeigt die Anzahl der während der Datenmigration aufgetretenen Fehler (falls vorhanden) an. Wählen Sie *Alle anzeigen*, um zur Seite *Fehler* zu gelangen, auf der Sie detailliertere Informationen zu diesen Fehlern finden.
+
+
+
+. Erstellen Sie detaillierte Berichte, die Ihnen Einblicke in Kennzahlen zur Jobausführung geben, darunter Dateianzahl, Status, Fehler und Ausführungszeit. Sie können diese Berichte zu Überprüfungs- oder Prüfungszwecken verwenden.
++
+** Wählen Sie *Discovery Report* > *Vorschau*, um ein Histogramm der Jobberichtdaten anzuzeigen.
+** Wählen Sie *Als CSV herunterladen*, um einen Bericht im CSV-Format zu exportieren, den Sie mit einer Tabellenkalkulationsanwendung analysieren können.
+** Wählen Sie *Als PDF herunterladen*. Diese Option ist ideal für das Teilen von Dokumenten.
+** Wählen Sie *Protokolle anzeigen*, um die Protokolldateien mit Grafana anzuzeigen oder herunterzuladen.
+
+
+
+
+
+
+== Migrationsaktivitäten anzeigen
+
+Die Seite „Migrationsaktivität“ zeigt die zehn ältesten Dateien an, die aktuell migriert werden. Sie zeigt außerdem die Gesamtzahl der in Bearbeitung befindlichen Dateien an und bietet eine Option, eine CSV-Datei mit einer vollständigen Liste dieser Dateien herunterzuladen.
+
+.Schritte
+. Wählen Sie in der Tabelle *Ausführungsverlauf* die *Auftragsausführungsdetails* für einen laufenden Auftrag aus.
+. Wählen Sie *Migrationsaktivität* aus.
+
+
+
+
+== Generieren Sie einen Jobfehlerbericht
+
+Sie können einen Fehlerbericht für Jobs mit dem Status *Fehlerhaft* oder für einen zuvor ausgeführten Job generieren. Ein Fehlerbericht kann Ihnen helfen zu verstehen, warum ein Fehler aufgetreten ist.
+
+.Schritte
+. Generieren Sie einen Fehlerbericht für Aufträge mit dem Status *Fehlerhaft*:
++
+.. Auf der Seite *Auftragsdetails* wählen Sie im Fehlerbereich die Option *Alle anzeigen*.
+.. Wählen Sie *Fehlerbericht generieren*, um Details zu Fehlern im letzten Joblauf herunterzuladen.
+
+
+. Generieren eines Fehlerberichts für einen vorherigen Joblauf:
++
+.. Auf der Seite *Auftragsdetails* wählen Sie in der Tabelle *Ausführungsverlauf* das Aktionsmenü neben dem Auftragslauf aus, für den Sie einen Fehlerbericht generieren möchten.
+.. Wählen Sie *Details*.
+.. Auf der Seite *Auftragsdetails* wählen Sie im Bereich *Fehler* die Option *Alle anzeigen*.
+.. Wählen Sie *Fehlerbericht generieren*, um Details zu Fehlern im ausgewählten Joblauf herunterzuladen.
+
+
+

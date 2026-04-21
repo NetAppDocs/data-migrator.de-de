@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: configure-bulk-cutover.html 
+keywords: bulk cutover, final sync, cutover job, chain of custody, migration approval 
+summary: Verwenden Sie Bulk Cutover in NetApp Data Migrator, um die abschließende Datensynchronisierung zwischen Quell- und Zielsystem durchzuführen. 
+---
+= Konfigurieren Sie die Massenumstellung in NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Verwenden Sie die Massenumstellung in NetApp Data Migrator, um die abschließende Synchronisierung zwischen Ihren Quell- und Zielsystemen durchzuführen. Sobald die Basismigrationen abgeschlossen sind und die inkrementellen Synchronisierungen laufen, können Sie mehrere Pfade in einem einzigen Umstellungsauftrag zusammenführen.
+
+
+
+== Starten Sie einen Umstellungsjob
+
+Befolgen Sie diese Schritte, um einen Cutover-Job zu starten.
+
+.Schritte
+. Melden Sie sich bei NetApp Data Migrator an.
+. Wählen Sie *Speicherserver* > *Dateiserver*.
+. Wählen Sie den Namen des Dateiservers aus, für den Sie einen Cutover-Job erstellen möchten.
+. Wählen Sie *Massenumstellung*.
+. Auf der Seite *Pfad auswählen* aktivieren Sie das Kontrollkästchen neben *Quellpfad*.
+. Aktivieren Sie das Kontrollkästchen neben dem Quellpfad (zur Bestätigung des Cutover-Jobs).
+. Wählen Sie *Fortfahren*.
+. Aktivieren Sie das Kontrollkästchen neben einem Jobnamen, um zu bestätigen, dass Sie einen *Bulk Cutover*-Job starten.
++
+
+NOTE: Sie können einen Auftrag auswählen, während ein Bulk Migrate-Auftrag parallel ausgeführt wird.
+
+. Wählen Sie *Absenden*, um Ihren Massenumstellungsauftrag zu starten.
++
+Die Bestätigungsmeldung *Umstellungsauftrag wurde erstellt* wird angezeigt.
+
+. Sie können den Link *Stellenanzeige anzeigen* neben dieser Nachricht auswählen, um die Seite „Job Config List“ zu öffnen, auf der Ihr neuer Job aufgeführt ist.
+
+
+
+
+== Einen Massenumstellungsauftrag genehmigen
+
+Befolgen Sie diese Schritte, um einen Umstellungsauftrag zu genehmigen.
+
+.Schritte
+. Wählen Sie auf der Seite *Jobs* die Registerkarte *Jobausführungsliste* aus.
+. Wählen Sie das Aktionsmenü neben Ihrem Umstellungsauftrag aus.
+. Wählen Sie *Überprüfung*.
++
+Es erscheint ein Pop-up-Fenster zur *Umstellungsbestätigung*.
+
+. Wählen Sie den Link *CoC-Bericht herunterladen*.
++
+Prüfen Sie anhand des Berichts, ob die Umstellung erfolgreich war und ob alle Daten erfolgreich von der Quelle zum Ziel migriert wurden.
+
+. Setzen Sie das Häkchen neben *Ich habe das COC-Dokument und alle anderen wichtigen Informationen geprüft und bestätigt*.
+. Wenn Sie mit den Informationen im COC-Bericht zufrieden sind, wählen Sie *Bestätigen*, um die *Bulk Cutover* zu genehmigen.
++
+Der Status ändert sich zu *Abgeschlossen*.
+
+

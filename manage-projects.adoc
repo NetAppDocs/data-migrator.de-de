@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: manage-projects.html 
+keywords: projects, project management, user roles, create project, project admin 
+summary: Verwenden Sie die Registerkarte „Projekte“ in der NetApp Data Migrator-Steuerungsebene, um Projekte zu erstellen, zu bearbeiten oder zwischen Projekten zu wechseln. 
+---
+= Erstellen und Verwalten von Projekten in NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Über die Registerkarte „Projekte“ in der NetApp Data Migrator-Steuerungsebene können Sie Projekte erstellen, bearbeiten oder zwischen ihnen wechseln.
+
+
+
+== Ein Projekt erstellen
+
+App-Administratoren können in NetApp Data Migrator ein neues Projekt erstellen und diesem Projekt Benutzer mit definierten Rollen zuweisen.
+
+.Schritte
+. Melden Sie sich bei NetApp Data Migrator an.
+. Wählen Sie *Einstellungen* > *Projekte*, um eine Liste der vorhandenen Projekte anzuzeigen.
+. Wählen Sie *Projekt hinzufügen*, und ein neues Fenster erscheint.
+. Geben Sie Ihren *Projektnamen* und *Projektbeschreibung (optional)* ein.
+. Fügen Sie Ihrem Projekt Benutzer hinzu:
++
+** Wählen Sie einen *Benutzer* aus der Dropdown-Liste aus.
+** Weisen Sie dem Benutzer eine *Rolle* zu (*App Admin*, *Project Admin* oder *Project Viewer*).
+** *+Hinzufügen* auswählen.
+
+
+. Wählen Sie *Speichern und Bestätigen*.
+. Wählen Sie *Absenden* und es erscheint eine Bestätigungsmeldung, die besagt, dass das Projekt erfolgreich erstellt wurde.
+
+
+
+
+== Ein Projekt bearbeiten
+
+Sie können Details zu Ihrem Projekt schnell bearbeiten, falls diese aktualisiert werden müssen.
+
+.Schritte
+. Wählen Sie in der oberen Navigationsleiste *Einstellungen* aus.
+. Wählen Sie die Registerkarte *Projekte*, um eine Liste der bestehenden Projekte anzuzeigen.
+. Wählen Sie *(⋮)* neben den Details des Projekts, das Sie bearbeiten möchten, und wählen Sie dann *Projekt bearbeiten* aus dem Dropdown-Menü.
+. Aktualisieren Sie den Projektnamen, die Projektbeschreibung oder fügen Sie bei Bedarf neue Benutzer hinzu.
+. Wählen Sie *Absenden*, um die Änderungen zu speichern.
+
+
+
+
+== Zwischen Projekten wechseln
+
+Wenn Sie mehrere Projekte gleichzeitig überwachen, können Sie schnell zwischen ihnen wechseln.
+
+.Schritte
+. Wählen Sie in der oberen Navigationsleiste das Dropdown-Menü *Projekt* aus.
+. Wählen Sie den Namen des aktuellen Projekts aus, um das Menü *Projektauswahl* zu öffnen und eine Liste der verfügbaren Projekte erscheint.
+. Verwenden Sie die *Projekte suchen*-Leiste, um schnell das Projekt zu finden, zu dem Sie wechseln möchten.
+. Wählen Sie das Kontrollkästchen neben dem Namen des Projekts aus, zu dem Sie wechseln möchten.
+. Wählen Sie *Switch*, um das ausgewählte Projekt zu laden.
+

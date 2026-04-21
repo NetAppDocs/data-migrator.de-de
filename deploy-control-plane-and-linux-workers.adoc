@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: deploy-control-plane-and-linux-workers.html 
+keywords: aws installation, prerequisites, control plane, worker vm, ec2 
+summary: Erfahren Sie mehr über die Installation der NetApp Data Migrator-Steuerungsebene und der Worker-VMs. 
+---
+= Bereitstellung der Steuerungsebene und der Linux-Worker-VMs für NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Stellen Sie die virtuelle Maschine (VM) der Steuerungsebene und die Linux-Worker-VM für NetApp Data Migrator mithilfe von AWS-, Azure- oder Google Cloud-Diensten oder Open Virtual Appliance (OVA)-Vorlagen bereit. Der Linux-Worker unterstützt NFS-Datenmigrationen.
+
+.Bevor Sie beginnen
+Laden Sie die NetApp Data Migrator-Images von link:https://mysupport.netapp.com/site/downloads["NetApp Support-Website"^] herunter:
+
+. Wählen Sie *NetApp Data Migrator*.
+. Folgen Sie den Anweisungen auf der NetApp Data Migrator-Downloadseite, um auf die NetApp Data Migrator-Images zuzugreifen.
+
+
+.Über diese Aufgabe
+Wählen Sie je nach Ihrer Bereitstellungsoption den Tab AWS, Azure, Google Cloud oder OVA.
+
+[role="tabbed-block"]
+====
+.AWS
+--
+Wiederholen Sie die folgenden Schritte für die Steuerungsebene und die Linux-Worker Amazon Machine Images (AMIs).
+
+.Schritte
+. Verwenden Sie die bereitgestellten AMI-IDs, um die AMIs in Ihrem AWS-Konto unter *EC2* > *AMIs* > *Private images* zu finden.
+. Kopieren Sie die AMIs in Ihr Konto:
++
+.. Wählen Sie das AMI aus, dann wählen Sie *Aktionen* > *AMI kopieren*
+.. Wählen Sie gegebenenfalls die Zielregion aus.
+.. Aktivieren Sie die Verschlüsselung und wählen Sie Ihren eigenen KMS-Schlüssel.
+.. Warten Sie, bis der AMI-Status *Verfügbar* anzeigt.
+
+
+
+
+--
+.Azure
+--
+Wiederholen Sie die folgenden Schritte für die Control Plane und die Linux Worker VHDs.
+
+.Schritte
+. Kopieren Sie die VHD-Dateien in Azure Blob Storage:
++
+[source, cli]
+----
+az storage blob copy start \
+  --source-uri "<PROVIDED_SAS_URL>" \
+  --destination-blob "<VHD_FILE_NAME>.vhd" \
+Group 1065216673, Grouped object  --destination-container <YOUR_CONTAINER_NAME> \
+  --account-name <YOUR_STORAGE_ACCOUNT> \
+  --account-key <YOUR_STORAGE_ACCOUNT_KEY>
+----
+. Erstellen Sie ein neues Azure-Image aus der kopierten VHD-Datei:
++
+[source, cli]
+----
+az image create \
+  --resource-group <YOUR_RESOURCE_GROUP> \
+  --name <YOUR_IMAGE_NAME> \
+  --source https://<YOUR_STORAGE_ACCOUNT>.blob.core.windows.net/<YOUR_CONTAINER_NAME>/<VHD_FILE_NAME>.vhd \
+  --os-type linux \
+  --location <YOUR_AZURE_REGION>
+----
+
+
+--
+.Google Cloud
+--
+.Schritte
+. Stellen Sie sicher, dass die für den Import von Images und die Bereitstellung der Steuerungsebene und der Worker-VMs erforderlichen Google Cloud APIs aktiviert sind. Weitere Informationen finden Sie unter link:https://docs.cloud.google.com/migrate/virtual-machines/docs/5.0/get-started/enable-services#enabling_required_services_on_the_host_project["Google Cloud-Dokumentation"^].
+. Erstellen Sie einen Google Cloud Storage-Bucket, falls noch keiner existiert. Dieser Bucket wird während des Importvorgangs zum Speichern der Bildarchive (.tar.gz) verwendet.
++
+Erfahren Sie, wie Sie link:https://cloud.google.com/storage/docs/creating-buckets#console["Erstellen Sie einen Google Cloud Storage-Bucket"^].
+
+. Richten Sie die IAM-Rollen und -Berechtigungen ein. Dadurch wird sichergestellt, dass die VM-Migrations-API über die erforderlichen Zugriffsberechtigungen verfügt und der VM-Migrationsservice auf den Google Cloud Storage-Bucket zugreifen und Images erstellen kann.
++
+.. Weisen Sie dem Dienstkonto objectViewer Zugriff auf Ihren Ziel-Cloud-Speicher-Bucket zu:
++
+[source, cli]
+----
+gcloud storage buckets add-iam-policy-binding gs://<GCS_BUCKET> \
+  --member=serviceAccount:service-<PROJECT_NUMBER>@gcp-sa-vmmigration.iam.gserviceaccount.com \
+  --role=roles/storage.objectViewer
+----
++
+Das Dienstkonto benötigt die Berechtigung roles/storage.objectViewer, um während des Migrationsprozesses die VM-Image-Dateien aus Ihrem Cloud Storage-Bucket lesen zu können.
+
++
+Wenn die VM Migration API aktiviert ist, stellt Google Cloud automatisch ein Dienstkonto im folgenden Format bereit:
+
++
+`service-<PROJECT_NUMBER>@gcp-sa-vmmigration.iam.gserviceaccount.com`
+
++
+*** `++ gcp-sa` ist das Google Cloud-Dienstkonto
+*** `vmmigration` ist die VM-Migrationsdienstkennung
+*** `iam.gserviceaccount.com` ist die Standarddomäne für Google Cloud-Dienstkonten
+
+
+.. Machen Sie sich selbst zu einem Administratorbenutzer im  `vmmigration`Dienst:
++
+[source, cli]
+----
+gcloud projects add-iam-policy-binding <PROJECT_ID> \
+  --member=user:<YOUR_EMAIL> \
+  --role=roles/vmmigration.admin
+----
++
+Dies gewährt Ihnen administrative Berechtigungen für die VM-Migration auf Projektebene.
+
+
+
+. Bilddateien beschaffen und hochladen:
++
+.. Laden Sie die Control-Plane `.tar.gz`-Image-Datei und die Linux-Worker `.tar.gz`-Image-Datei von der link:https://mysupport.netapp.com/site/["NetApp Support-Website"^] herunter.
+.. Laden Sie die  `.tar.gz` Dateien in Ihren Google Cloud Storage-Bucket hoch.
+
+
+. Nachdem die Image-Archive in Google Cloud Storage hochgeladen wurden, erstellen Sie VM-Images mithilfe des VM Migration Service, indem Sie für jedes Image (Steuerungsebene und Linux-Worker) den folgenden Befehl ausführen.
++
+[source, cli]
+----
+--source-file=gs://<GCS_BUCKET>/<IMAGE_NAME>.tar.gz \
+  --image-name=<IMAGE_NAME> \
+  --location=<REGION> \
+  --target-project=projects/<PROJECT_ID>/locations/global/targetProjects/<PROJECT_ID> \
+  --project=<PROJECT_ID>
+----
++
+Dieser Befehl erstellt ein neues Google Cloud Platform VM-Image aus dem bereitgestellten Archiv in der angegebenen Region.
+
+. Bildimportvorgänge auflisten und Abschluss bestätigen:
++
+[source, cli]
+----
+gcloud migration vms image-imports list --location=<REGION> --project=<PROJECT_ID>
+----
+
+
+--
+.OVA
+--
+.Schritt
+Laden Sie die Control-Plane `.ova`-Image-Datei und die Linux-Worker `.ova`-Image-Datei von der link:https://mysupport.netapp.com/site/["NetApp Support-Website"^] herunter.
+
+--
+====
+.Was kommt als Nächstes?
+Nachdem Sie gelernt haben, wie man eine Control-Plane-VM und eine Linux-Worker-VM bereitstellt, können Sie link:create-control-plane-and-worker-vms.html["Erstellen der Steuerungsebene und der Worker-VMs"].

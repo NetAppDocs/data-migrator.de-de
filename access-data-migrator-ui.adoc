@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: access-data-migrator-ui.html 
+keywords: netapp, data, migrator, ui, control, plane, access, worker, linux, windows 
+summary: Greifen Sie nach der Bereitstellung auf die NetApp Data Migrator-Benutzeroberfläche zu, melden Sie sich an der Steuerungsebene an und verbinden Sie die bereitgestellten Linux- und Windows-Worker. 
+---
+= Greifen Sie auf die NetApp Data Migrator-Benutzeroberfläche zu
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Nachdem Sie die Control-Plane-VM bereitgestellt und überprüft haben, ob die Dienste und Pods erfolgreich ausgeführt werden, greifen Sie auf die NetApp Data Migrator-Benutzeroberfläche zu und stellen Sie eine Verbindung zur Control Plane, den Linux-Workern und den Windows-Workern her.
+
+.Bevor Sie beginnen
+Vergewissern Sie sich, dass Sie die private IP-Adresse der Control-Plane-VM besitzen, die Sie erhalten haben, als Sie link:deploy-control-plane-and-linux-workers.html["Die Steuerungsebenen-VM wurde bereitgestellt"]. Sie verwenden die private IP-Adresse der Control-Plane-VM, um auf die Benutzeroberfläche zuzugreifen.
+
+.Schritte
+. Navigieren Sie mithilfe eines Webbrowsers zur Steuerungsebene:
++
+`\https://<control-plane-private-ip-address>/`
+
+. Verwenden Sie den Standardbenutzernamen und das Standardpasswort zum Anmelden.
+. Wählen Sie je nach Migrationstyp einen der folgenden Tabs aus:
++
+*NFS*: Diese Option ist für NFS-Migrationen (Linux-Worker) vorgesehen.
+
++
+*SMB*: Diese Option ist für SMB-Migrationen (Windows-Worker) vorgesehen.
+
+. Folgen Sie den Anweisungen auf dem Bildschirm, um über die Steuerungsebene eine Verbindung zu den bereitgestellten Worker-VMs herzustellen.
++
+Wählen Sie auf der Startseite *Anleitung zur Einrichtung des Workers anzeigen*.
+
+. Überprüfen Sie den Status im Abschnitt *Workers*, um sicherzustellen, dass der Worker erfolgreich verbunden ist.
++
+Nachdem die Worker erfolgreich verbunden wurden, können Sie die NetApp Data Migrator-Umgebung konfigurieren und Migrationsaufträge ausführen.
+
+
+
+.Was kommt als Nächstes?
+Nachdem Sie gelernt haben, wie Sie auf die NetApp Data Migrator-Benutzeroberfläche zugreifen, können Sie link:configure-data-migrator.html["configure NetApp Datenmigrator"].

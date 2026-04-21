@@ -1,0 +1,41 @@
+---
+indexpage:
+  title: NetApp Data Migrator-Dokumentation
+  summary: NetApp Data Migrator ist eine Enterprise-Grade, Multicloud, Datenmigration
+    Softwareapplikation, die die Migration unstrukturierter Dateidaten von lokalen
+    oder Storage von Drittanbietern Speichersystemen zu öffentlichen Cloud-Speicherdiensten,
+    die von NetApp betrieben werden, vereinfacht. NetApp Data Migrator ist eine unabhängige
+    Anwendung, die auf benutzerverwalteten virtuellen Maschinen läuft und den Bedarf
+    an komplexen benutzerdefinierten Skripten und voneinander unabhängigen Tools eliminiert.
+  keywords: netapp, data, migrator, documentation
+  lead: NetApp Data Migrator ist eine Enterprise-Grade, Multicloud, Datenmigration
+    Softwareapplikation, die die Migration unstrukturierter Dateidaten von lokalen
+    oder Storage von Drittanbietern Speichersystemen zu öffentlichen Cloud-Speicherdiensten,
+    die von NetApp betrieben werden, vereinfacht. NetApp Data Migrator ist eine unabhängige
+    Anwendung, die auf benutzerverwalteten virtuellen Maschinen läuft und den Bedarf
+    an komplexen benutzerdefinierten Skripten und voneinander unabhängigen Tools eliminiert.
+  tiles:
+  - title: Los geht's
+    links:
+    - title: Versionshinweise
+      url: "/whats-new.html"
+    - title: Erfahren Sie mehr über NetApp Data Migrator
+      url: "/learn-about-data-migrator.html"
+    - title: Schnellstart
+      url: "/quick-start.html"
+  - title: Installieren und verwenden Sie NetApp Data Migrator
+    links:
+    - title: Installieren Sie NetApp Data Migrator
+      url: "/learn-about-install.html"
+    - title: Modernisierung der Kontrollebene und der Worker
+      url: "/upgrade.html"
+    - title: Projekte erstellen und verwalten
+      url: "/manage-projects.html"
+    - title: Verwenden Sie NetApp Data Migrator
+      url: "/manage-users.html"
+  - title: Weitere Ressourcen
+    links:
+    - title: Hilfe erhalten
+      url: "/register-for-support.html"
+    - title: FAQ
+      url: "/faq.html"

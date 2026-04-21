@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: configure-notifications.html 
+keywords: notifications, smtp, email alerts, real-time alerts, project status 
+summary: Konfigurieren Sie NetApp Data Migrator so, dass Echtzeit-E-Mail-Benachrichtigungen über Projektstatusänderungen versendet werden, indem Sie einen SMTP-E-Mail-Server einrichten. 
+---
+= Konfigurieren Sie Echtzeitbenachrichtigungen für NetApp Data Migrator
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie können NetApp Data Migrator so konfigurieren, dass Sie in Echtzeit E-Mail-Benachrichtigungen über Statusänderungen Ihrer Projekte erhalten.
+
+.Bevor Sie beginnen
+Vergewissern Sie sich, dass Sie als *App Admin* Benutzer angemeldet sind. Diese Benutzerebene ist erforderlich, um die SMTP-E-Mail-Serverdetails zu konfigurieren.
+
+.Schritte
+. Wählen Sie in der Navigationsleiste *Einstellungen* aus.
+. Wählen Sie die Registerkarte *SMTP* aus und füllen Sie die in der folgenden Tabelle aufgeführten Felder aus.
+
+
+[cols="1,2a"]
+|===
+| Feld | Beschreibung 
+
+
+| IP-Adresse  a| 
+SMTP-Serveradresse
+
+
+
+| Port  a| 
+SMTP-Port
+
+
+
+| Benutzername  a| 
+Authentifizierungs-Benutzername für die Serverauthentifizierung
+
+
+
+| Passwort  a| 
+Server-Authentifizierungspasswort
+
+
+
+| Aus E-Mail  a| 
+Absenderadresse für alle Benachrichtigungen
+
+
+
+| An E-Mail  a| 
+Empfängeradresse(n) für Benachrichtigungen
+
+|===
+
+NOTE: Nach der Konfiguration von SMTP müssen Benutzer das Passwort erneut eingeben, wenn sie die SMTP-Einstellungen bearbeiten.
