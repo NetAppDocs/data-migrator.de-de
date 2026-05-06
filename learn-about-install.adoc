@@ -11,7 +11,7 @@ summary: Erfahren Sie mehr über die Installation der NetApp Data Migrator-Steue
 
 
 [role="lead"]
-Sie müssen eine Steuerungsebene und Worker installieren, um NFS- und SMB-Migrationsaufträge mit NetApp Data Migrator auszuführen.
+NetApp Data Migrator besteht aus einer Steuerungsebene und einem oder mehreren Workern, die zusammenarbeiten, um Datenmigration mithilfe der NFS- und SMB-Transportprotokolle durchzuführen.
 
 * *Steuerungsebene*: Die Steuerungsebene dient als zentrale Verwaltungs- und Steuerungsschicht. Sie stellen die Steuerungsebene auf einer virtuellen Linux-Maschine (VM) bereit, dann stellen Sie die Worker bereit.
 * *Worker*: Worker sind virtuelle Maschinen, die die eigentliche Datenmigration durchführen. Je nach Umfang und Anforderungen können Sie mehrere Worker einsetzen. Der Worker-Typ hängt vom Protokoll ab.
@@ -24,7 +24,7 @@ Sie müssen eine Steuerungsebene und Worker installieren, um NFS- und SMB-Migrat
 
 Zuerst stellen Sie die virtuelle Maschine (VM) der Steuerungsebene und die Linux-Worker-VM mithilfe des AWS-, Azure- oder Google Cloud-Dienstes oder mithilfe von Open Virtual Appliance (OVA)-Vorlagen bereit. Sie laden die für die Bereitstellung erforderlichen NetApp Data Migrator-Images von der NetApp Support-Website herunter.
 
-Nach der Bereitstellung erstellen Sie die Steuerungsebene- und Worker-VMs, um auf NetApp Data Migrator zuzugreifen. Sie erstellen die Steuerungsebene-VM und die Linux-Worker-VM mithilfe der bereitgestellten Images. Die Windows-Worker-VM erstellen Sie mit dem Windows Worker Installer, den Sie von der NetApp Support-Website herunterladen.
+Nach der Bereitstellung erstellen Sie die Control-Plane-VM und die Worker-VMs, um auf den NetApp Data Migrator zuzugreifen. Erstellen Sie die Control-Plane-VM und die Linux-Worker-VM mithilfe der bereitgestellten Images. Erstellen Sie die Windows-Worker-VM mit dem Windows Worker Installer, den Sie von der NetApp Support Site herunterladen. Anschließend können Sie optional die Control-Plane-VM validieren oder auf die NetApp Data Migrator UI zugreifen und eine Verbindung zur Control Plane und zu den Workern herstellen.
 
 .Was kommt als Nächstes?
-Nachdem Sie gelernt haben, wie man NetApp Data Migrator installiert, können Sie link:register-for-account.html["Registrieren Sie sich für ein Konto"].
+Nachdem Sie gelernt haben, wie man NetApp Data Migrator installiert, können Sie sich link:register-for-account.html["Registrieren Sie sich für ein Konto"] auf der NetApp Support Site anmelden, wenn Sie ein Neukunde sind, oder zu link:deploy-control-plane-and-linux-workers.html["Stellen Sie die Steuerungsebene und die Linux-Worker-VMs bereit"] wechseln, wenn Sie bereits ein Konto haben.

@@ -56,9 +56,52 @@ Es erscheint ein Pop-up-Fenster zur *Umstellungsbestätigung*.
 +
 Prüfen Sie anhand des Berichts, ob die Umstellung erfolgreich war und ob alle Daten erfolgreich von der Quelle zum Ziel migriert wurden.
 
-. Setzen Sie das Häkchen neben *Ich habe das COC-Dokument und alle anderen wichtigen Informationen geprüft und bestätigt*.
-. Wenn Sie mit den Informationen im COC-Bericht zufrieden sind, wählen Sie *Bestätigen*, um die *Bulk Cutover* zu genehmigen.
+. Setzen Sie das Häkchen neben *Ich habe das Dokument zur Nachweiskette (Chain of Custody, CoC) und alle anderen wichtigen Informationen geprüft und bestätigt*.
+. Wenn Sie mit den Informationen im Chain of Custody (CoC)-Bericht zufrieden sind, wählen Sie *Bestätigen*, um die *Bulk Cutover* zu genehmigen.
 +
 Der Status ändert sich zu *Abgeschlossen*.
+
+
+
+
+
+=== Metadatenaktualisierungskonflikte beheben
+
+Bei der Bestätigung des Systemwechsels für SMB-Migrationen können Metadatenaktualisierungskonflikte auftreten. Um die Metadatenaktualisierungskonflikte zu beheben, führen Sie das Metadatensynchronisierungsskript für die betroffenen Dateien aus.
+
+.Schritte
+. Laden Sie den im Rahmen des Umstellungsprozesses erstellten CoC-Berichts-ZIP-Ordner herunter.
+. Entpacken Sie den ZIP-Ordner auf dem Windows-Workerrechner, der an der Umstellung für das Pfadpaar beteiligt war.
++
+
+NOTE: Die Laufwerksbuchstaben  `S` und  `T` werden verwendet, um die Quell- und Zielvolumes auf dem Windows-Worker zuzuordnen. Verwenden Sie diese Laufwerksbuchstaben nicht für andere Mounts, wenn Sie dieses Skript ausführen.
+
+. Kopieren Sie die benötigte  `metadata_conflict_errors.csv` Datei.
+. Öffnen Sie PowerShell als Administrator auf dem Windows-Workerrechner.
+. Navigieren Sie zum Skriptverzeichnis:
++
+[source, cli]
+----
+cd C:\datamigrator\scripts
+----
+. Führen Sie das Skript zum Stempeln der Metadaten mit Platzhaltern für alle Parameter aus:
++
+[source, cli]
+----
+.\stamp-metadata.ps1 `
+-SourceHost "<SourceFileServer_FQDN_or_IP>" `
+-SourceShare "<Source_ShareName_Only (e.g., data)>" `
+-DestHost "<DestinationFileServer_FQDN_or_IP>" `
+-DestShare "<Destination_ShareName_Only>" `
+-SourceUsername "<DOMAIN User_With_Read_Access_To_Source>" `
+-SourcePassword "<Password_For_Source_User>" `
+-DestUsername "<DOMAIN User_With_Write_Access_To_Destination>" `
+-DestPassword "<Password_For_Destination_User>" `
+-InputFile "<Full_Path_To_File_List_CSV (e.g., C:\Migration\files.csv)>" `
+-SidMapFile "<Full_Path_To_SID_Mapping_CSV (OldSID_to_NewSID)>" `
+-Domain "<ActiveDirectory_Domain (e.g., company.com_or_COMPANY)>"
+----
++
+Die SID-Zuordnung und die domänenbezogenen Parameter (SidMapFile und Domain) sind optional und können bei Bedarf hinzugefügt werden.
 
 
