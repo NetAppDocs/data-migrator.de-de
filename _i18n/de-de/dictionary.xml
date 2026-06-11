@@ -106,7 +106,6 @@
   <block id="4dbe34dcfaf21a426bc5f1d0a9947fc0" category="section-title">Schritt 2: Quell- und Zielzuordnungen hinzufügen</block>
   <block id="87834d34f8d8989b4c54caedbea8b7d4" category="paragraph">Fügen Sie Quell- und Zielzuordnungen hinzu, um die Quell- und Zielexportpfade für Ihre Datenmigration festzulegen.</block>
   <block id="a270c874dd3f23eef6fb2f8c7a227252" category="list-text">Wählen Sie den Exportpfad in der Quelle aus, den Sie migrieren möchten.</block>
-  <block id="1ada8f7056024f536b0017b8a818a648" category="list-text">Optional können Sie *Quellverzeichnis hinzufügen* auswählen, wenn Sie eine Migration auf Verzeichnisebene durchführen möchten.</block>
   <block id="5657e4af05fc77ede4d05249c45b45e9" category="paragraph">Nachdem Sie *Quellverzeichnis hinzufügen* ausgewählt haben, wird die Verzeichnis-Explorer-Ansicht angezeigt. Diese Ansicht zeigt die Liste der Verzeichnisse auf der Stammebene an. Sie können entweder zum gewünschten Verzeichnis navigieren oder den Pfad des gewünschten Verzeichnisses direkt in die Suchleiste des Explorer-Fensters kopieren und einfügen, um zu diesem Ordner zu gelangen.</block>
   <block id="96a001e4dedac46d583f146f571969b2" category="list-text">Nachdem Sie das Quellverzeichnis ausgewählt haben, wählen Sie den Zieldateiserver und den Zielexportpfad aus.</block>
   <block id="72f51b9743f5e36c1ea9f0ecd58e0f52" category="list-text">Optional können Sie das Verzeichnis im Zielexportpfad auswählen.</block>
@@ -1174,4 +1173,7 @@
   <block id="034b07d5c19791bdc29e619054083834" category="admonition">Es kann bis zu einem Arbeitstag dauern, bis Ihr neues Konto von *Gastzugang* auf *Vollzugriff* hochgestuft wird.</block>
   <block id="173529d8b3d8c0ff4ea8f40dbf7aabe9" category="inline-link-macro">NetApp Support-Website Registrierungsseite</block>
   <block id="be7a31416eb06ebc304a614c3460a1a0" category="list-text">Gehe zu <block ref="5a5dddcca17792452be16c79d0405d2d" category="inline-link-macro-rx"></block>.</block>
+  <block id="70081c17ffe468cb19f06de7d6b65a51" category="list-text">Optional können Sie *Quellverzeichnis hinzufügen* auswählen, wenn Sie eine Migration auf Verzeichnisebene durchführen möchten.</block>
+  <block id="d76c25422f3dafa6f43c2fc5410dfaef" category="cell">Geerbte Berechtigungen in explizite Berechtigungen umwandeln</block>
+  <block id="c9fbfd8a6f3192f2f1e72e34686607dc" category="paragraph">Wenn Sie diese Option aktivieren, werden alle vom Quellverzeichnis geerbten Berechtigungen während SMB-Migrationen auf Verzeichnisebene als explizite Berechtigungen im Zielverzeichnis geschrieben.</block>
 </blocks>

@@ -62,6 +62,11 @@ Auf der Seite *Optionen* können Sie verschiedene Einstellungen auswählen, um I
 | Option | Beschreibung 
 
 
+| Geerbte Berechtigungen in explizite Berechtigungen umwandeln  a| 
+Wenn Sie diese Option aktivieren, werden alle vom Quellverzeichnis geerbten Berechtigungen während SMB-Migrationen auf Verzeichnisebene als explizite Berechtigungen im Zielverzeichnis geschrieben.
+
+
+
 | Ausgeschlossene Pfadmuster  a| 
 Definiert die spezifischen Dateipfade oder Verzeichnisse, die von der Verarbeitung ausgeschlossen werden sollen. Dies trägt zur Optimierung von Speicher und Leistung bei, indem unnötige Dateien übersprungen werden.
 
