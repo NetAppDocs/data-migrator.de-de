@@ -13,6 +13,9 @@ summary: Verwenden Sie diese Entscheidungsmatrix, um zu bestimmen, ob Sie NetApp
 [role="lead"]
 Verwenden Sie die Entscheidungsmatrix, um zu bestimmen, ob Sie für Ihre NFS- und SMB-Datenmigrationsvorgänge von einem ONTAP On-Premises-Speichersystem NetApp Data Migrator oder SnapMirror verwenden sollten. Wenn Sie beispielsweise NFS- und SMB-Dateien von einer ONTAP On-Premises-Quelle mit ONTAP 9.12.1 zu einem Google Cloud NetApp Volumes Flex Service-Ziel migrieren, sollten Sie NetApp Data Migrator verwenden.
 
+
+NOTE: NetApp Data Migrator unterstützt keine Datenmigration zu ONTAP On-Premises-Speichersystemzielen.
+
 [cols="2,1,1,1,1,1,1a"]
 |===
 | Lokales oder Storage von Drittanbietern-Speichersystem | Amazon FSx for NetApp ONTAP | Azure NetApp Files-Hardware | Cloud Volumes ONTAP | Google Cloud NetApp Volumes-Hardware | Google Cloud NetApp Volumes Flex | Google Cloud NetApp Volumes Flex (VSA-basiert) 

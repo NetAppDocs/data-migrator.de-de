@@ -29,4 +29,4 @@ Stellen Sie sicher, dass der Exportpfad korrekt eingegeben wurde und auf dem Ser
 Prüfen Sie, ob Sie das richtige Arbeitsverzeichnis für den ausgewählten Exportpfad angegeben haben.
 
 .Warum erhalte ich eine Fehlermeldung wegen fehlender Schreibberechtigung im Arbeitsverzeichnis?
-Dieser Fehler tritt auf, wenn der korrekte Exportpfad und das korrekte Arbeitsverzeichnis angegeben sind, die erforderlichen Schreibberechtigungen jedoch fehlen. Ohne die korrekten Schreibberechtigungen schlägt die Vorabprüfung des Dateiservers fehl, und der Benutzer kann keine Aufträge ausführen. Stellen Sie sicher, dass der Benutzer, bei dem der Fehler auftritt, über die erforderlichen Schreibberechtigungen verfügt.
+Dieser Fehler tritt auf, wenn der korrekte Exportpfad und das korrekte Arbeitsverzeichnis angegeben sind, die erforderlichen Schreibberechtigungen jedoch fehlen. Ohne die korrekten Schreibberechtigungen schlägt die Vorabprüfung des Dateiservers fehl und Sie können keine Aufträge ausführen. Es sollte überprüft werden, ob der Benutzer, bei dem der Fehler auftritt, über die erforderlichen Schreibberechtigungen verfügt.
