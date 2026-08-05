@@ -15,6 +15,7 @@ Verwenden Sie die Massenumstellung in NetApp Data Migrator, um die abschließend
 
 
 
+[[start-a-cutover-job]]
 == Starten Sie einen Umstellungsjob
 
 Befolgen Sie diese Schritte, um einen Cutover-Job zu starten.
@@ -41,6 +42,7 @@ Die Bestätigungsmeldung *Umstellungsauftrag wurde erstellt* wird angezeigt.
 
 
 
+[[approve-a-bulk-cutover-job]]
 == Einen Massenumstellungsauftrag genehmigen
 
 Befolgen Sie diese Schritte, um einen Umstellungsauftrag zu genehmigen.
@@ -65,6 +67,7 @@ Der Status ändert sich zu *Abgeschlossen*.
 
 
 
+[[resolve-metadata-update-conflicts]]
 === Metadatenaktualisierungskonflikte beheben
 
 Bei der Bestätigung des Systemwechsels für SMB-Migrationen können Metadatenaktualisierungskonflikte auftreten. Um die Metadatenaktualisierungskonflikte zu beheben, führen Sie das Metadatensynchronisierungsskript für die betroffenen Dateien aus.

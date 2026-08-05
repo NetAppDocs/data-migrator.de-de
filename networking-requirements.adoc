@@ -15,6 +15,7 @@ Sie müssen sicherstellen, dass die IP-Adresse und das Subnetz sowohl für die S
 
 
 
+[[verify-nfs-access]]
 == NFS-Zugriff überprüfen
 
 Für NFS benötigen die Steuerungsebene und die Worker-Knoten die Berechtigung, als Root-Clients auf das Speichersystem zuzugreifen.
@@ -32,6 +33,7 @@ ls -la /mnt/test
 
 
 
+[[verify-smb-access]]
 == SMB-Zugriff überprüfen
 
 Für den SMB-Zugriff benötigen die Steuerungsebene und die Worker-Knoten die Berechtigung, mit den SMB-Anmeldeinformationen auf das Speichersystem zuzugreifen. Der SMB-Benutzer muss Mitglied der Gruppen „Backup-Operatoren“ und „Administratoren“ sein.

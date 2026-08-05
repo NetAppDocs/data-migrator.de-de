@@ -15,6 +15,7 @@ Die Einschränkungen und Funktionen der NFS- und SMB-Migration, die mit dieser V
 
 
 
+[[nfs-and-smb-discovery-and-migration-limitations]]
 == Einschränkungen bei der Erkennung und Migration von NFS und SMB
 
 [cols="1,2,2a"]
@@ -48,6 +49,7 @@ Die Einschränkungen und Funktionen der NFS- und SMB-Migration, die mit dieser V
 |===
 
 
+[[feature-limitations]]
 == Funktionsbeschränkungen
 
 [cols="1,2a"]

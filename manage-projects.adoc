@@ -15,6 +15,7 @@ summary: Verwenden Sie die Registerkarte „Projekte“ in der NetApp Data Migra
 
 
 
+[[create-a-project]]
 == Ein Projekt erstellen
 
 App-Administratoren können in NetApp Data Migrator ein neues Projekt erstellen und diesem Projekt Benutzer mit definierten Rollen zuweisen.
@@ -37,6 +38,7 @@ App-Administratoren können in NetApp Data Migrator ein neues Projekt erstellen 
 
 
 
+[[edit-a-project]]
 == Ein Projekt bearbeiten
 
 Sie können Details zu Ihrem Projekt schnell bearbeiten, falls diese aktualisiert werden müssen.
@@ -51,6 +53,7 @@ Sie können Details zu Ihrem Projekt schnell bearbeiten, falls diese aktualisier
 
 
 
+[[switch-between-projects]]
 == Zwischen Projekten wechseln
 
 Wenn Sie mehrere Projekte gleichzeitig überwachen, können Sie schnell zwischen ihnen wechseln.

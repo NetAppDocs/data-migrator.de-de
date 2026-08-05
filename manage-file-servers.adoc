@@ -15,6 +15,7 @@ Sie können NetApp Data Migrator verwenden, um Dateiserver hinzuzufügen, zu kon
 
 
 
+[[add-a-new-file-server]]
 == Neuen Dateiserver hinzufügen
 
 Fügen Sie einen neuen NFS- oder SMB-Dateiserver hinzu und konfigurieren Sie die Worker-VMs.
@@ -138,6 +139,8 @@ Wenn die Vorprüfung fehlerfrei abgeschlossen wird, erscheint der Name Ihres Dat
 ====
 
 
+[[manually-upload-export-and-directory-paths]]
+[[manually-upload-export-paths]]
 == Export- und Verzeichnispfade manuell hochladen
 
 NetApp Data Migrator ermöglicht es Ihnen, Exportpfade und Verzeichnispfade für die Verwendung bei Datenmigrationen für das NFS-Protokoll manuell hochzuladen. Diese Funktion ist in Umgebungen nützlich, in denen die automatische Erkennung von NFS-Exportpfaden nicht verfügbar ist. Zum Beispiel für die Verwendung mit dem GCNV Flex Service oder wenn Verzeichnispfade anstelle des gesamten Exportpfads migriert werden. Wenn Sie im Bereich *Export Paths Retrieval Mechanism* die Option *Manual Upload* auswählen, müssen Sie die von NetApp Data Migrator bereitgestellte Vorlagendatei herunterladen und ausfüllen, nachdem Sie einen Dateiserver erstellt haben.
@@ -167,6 +170,7 @@ Nach Abschluss des Uploads können Exportpfade und Verzeichnispfade einen der fo
 
 
 
+[[edit-file-server-details]]
 == Details zum Dateiserver bearbeiten
 
 Bei Bedarf können Sie Änderungen an einem zuvor konfigurierten Dateiserver vornehmen.

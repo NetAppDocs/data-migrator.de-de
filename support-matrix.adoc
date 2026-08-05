@@ -15,12 +15,14 @@ NetApp Data Migrator unterstützt bestimmte Funktionen, Dateiserver und Protokol
 
 
 
+[[supported-and-unsupported-features]]
 == Unterstützte und nicht unterstützte Funktionen
 
 NetApp Data Migrator unterstützt eine Reihe von Funktionen für NFS- und SMB-Migrationen. Einige Funktionen werden nicht unterstützt.
 
 
 
+[[supported-features]]
 === Unterstützte Funktionen
 
 [cols="1,2a"]
@@ -76,6 +78,7 @@ NetApp Data Migrator migriert Objekte und Verknüpfungen als separate Dateien.
 |===
 
 
+[[unsupported-features]]
 === Nicht unterstützte Funktionen
 
 [cols="1,2a"]
@@ -115,6 +118,7 @@ Migration von Snapshots
 |===
 
 
+[[supported-file-servers]]
 == Unterstützte Dateiserver
 
 NetApp Data Migrator unterstützt bestimmte Dateiserver als Quelle und Ziel für Datenmigration.
@@ -135,6 +139,7 @@ Alle Servicelevel von Azure NetApp Files (ANF), Google Cloud NetApp Volumes (GCN
 |===
 
 
+[[supported-nfs-and-smb-migration-protocols]]
 == Unterstützte NFS- und SMB-Migrationsprotokolle
 
 NetApp Data Migrator unterstützt bestimmte NFS- und SMB-Protokollversionen für Datenmigration.

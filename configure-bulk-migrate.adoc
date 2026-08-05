@@ -15,6 +15,7 @@ Nutzen Sie die Funktionen zur Massenmigration in NetApp Data Migrator, um große
 
 
 
+[[step-1-configure-bulk-migrate-in-netapp-data-migrator]]
 == Schritt 1: Massenmigration im NetApp Datenmigrator konfigurieren
 
 Bevor Sie die Server für Bulk Migrate definieren können, müssen Sie die Server für Bulk Migrate definieren.
@@ -28,6 +29,7 @@ Bevor Sie die Server für Bulk Migrate definieren können, müssen Sie die Serve
 
 
 
+[[step-2-add-source-and-destination-mappings]]
 == Schritt 2: Quell- und Zielzuordnungen hinzufügen
 
 Fügen Sie Quell- und Zielzuordnungen hinzu, um die Quell- und Zielexportpfade für Ihre Datenmigration festzulegen.
@@ -53,6 +55,7 @@ NetApp Data Migrator verhindert die Auswahl einer Zuordnung, die eine über- ode
 
 
 
+[[step-3-customize-the-bulk-migrate-job]]
 == Schritt 3: Massenmigrationsauftrag anpassen
 
 Auf der Seite *Optionen* können Sie verschiedene Einstellungen auswählen, um Ihren Bulk Migrate-Job Ihren Bedürfnissen entsprechend anzupassen.
@@ -144,6 +147,7 @@ Nachdem Sie Ihre Optionen ausgewählt haben, wählen Sie *Weiter*, um die Seite 
 
 
 
+[[step-4-review-and-submit]]
 == Schritt 4: Überprüfen und absenden
 
 Überprüfen Sie Ihre Einstellungen und fahren Sie dann mit der Massenmigration fort.

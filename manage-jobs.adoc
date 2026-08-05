@@ -18,6 +18,7 @@ NOTE: Führen Sie Migrations- und Umstellungsaufträge nicht gleichzeitig aus. S
 
 
 
+[[view-job-config-list]]
 == Jobkonfigurationsliste anzeigen
 
 Die Seite *Auftragskonfigurationsliste* bietet eine umfassende Übersicht aller migrationsbezogenen Aufträge. Nutzen Sie diese Seite, um den Status und Fortschritt von *Erkennungs-*, *Migrations-* und *Umstellungs-*Aufträgen zu überwachen und zu verwalten.
@@ -56,6 +57,7 @@ Jobs, die manuelle Exportpfade oder die Exportpfaddatei verwenden, werden späte
 
 
 
+[[activate-or-deactivate-a-job]]
 == Einen Job aktivieren oder deaktivieren
 
 In der Tabelle „Job Listings“ können Sie einen Job aktivieren oder deaktivieren.
@@ -79,6 +81,7 @@ In der Tabelle „Job Listings“ können Sie einen Job aktivieren oder deaktivi
 
 
 
+[[edit-job-configurations]]
 == Jobkonfigurationen bearbeiten
 
 .Schritte
@@ -113,6 +116,7 @@ NOTE: Änderungen an der Konfiguration, wie beispielsweise das Deaktivieren der 
 
 
 
+[[re-run-errored-files-and-directories]]
 == Fehlerhafte Dateien und Verzeichnisse erneut ausführen
 
 Falls ein Migrationsauftrag aufgrund vorübergehender Probleme wie Netzwerk-Timeouts oder Berechtigungsproblemen mit Fehlern abgeschlossen wird, können Sie die Wiederholungsfunktion verwenden, um nur die fehlgeschlagenen Elemente erneut zu verarbeiten, ohne die gesamte Migration erneut auszuführen.
@@ -125,6 +129,7 @@ Falls ein Migrationsauftrag aufgrund vorübergehender Probleme wie Netzwerk-Time
 
 
 
+[[delete-a-job]]
 == Einen Job löschen
 
 .Schritte
@@ -139,6 +144,7 @@ NOTE: Sie können einen Auftrag nur löschen, wenn kein aktiver Lauf vorhanden i
 
 
 
+[[view-job-details]]
 == Stellenbeschreibung ansehen
 
 Auf der Seite *Auftragskonfigurationsliste* können Sie auf die Seite *Auftragsdetails* zugreifen, um weitere Details zu einzelnen Aufträgen anzuzeigen, wie zum Beispiel:
@@ -157,6 +163,7 @@ Auf der Seite *Auftragskonfigurationsliste* können Sie auf die Seite *Auftragsd
 
 
 
+[[view-job-run-history]]
 == Jobverlauf anzeigen
 
 Auf der Seite *Auftragsdetails* liefert Ihnen die Tabelle *Ausführungsverlauf* Informationen zu früheren Auftragsausführungen und zum Auftragsstatus.
@@ -181,6 +188,7 @@ Zu den Übergangsstatusarten gehören:
 
 
 
+[[manage-job-run-operations]]
 == Job-Run-Operationen verwalten
 
 Auf der Seite *Auftragsdetails* können Sie die Aktionen *Starten*, *Stoppen*, *Pausieren* und *Fortsetzen* eines Auftrags verwalten. Mit der Funktion *Pausieren* können Sie einen laufenden Auftrag vorübergehend anhalten, ohne ihn abzubrechen. Anschließend können Sie den Auftrag an der Stelle fortsetzen, an der er pausiert wurde. Diese Funktion ist hilfreich, wenn Sie Systemressourcen freigeben oder Probleme beheben müssen, ohne den Fortschritt zu verlieren.
@@ -215,6 +223,7 @@ Der Job-Ausführungsstatus ändert sich zu *Wird ausgeführt*.
 
 
 
+[[access-job-run-details]]
 == Zugriff auf Jobausführungsdetails
 
 Über die Tabelle *Ausführungsverlauf* gelangen Sie zur Seite *Jobausführungsdetails*, auf der Sie weitere Details zu Ihren Jobausführungen einsehen können.
@@ -258,6 +267,7 @@ Die Kachel unten rechts auf der Seite *Jobausführungsdetails* zeigt die Anzahl 
 
 
 
+[[view-migration-activity]]
 == Migrationsaktivitäten anzeigen
 
 Die Seite „Migrationsaktivität“ zeigt die zehn ältesten Dateien an, die aktuell migriert werden. Sie zeigt außerdem die Gesamtzahl der in Bearbeitung befindlichen Dateien an und bietet eine Option, eine CSV-Datei mit einer vollständigen Liste dieser Dateien herunterzuladen.
@@ -269,6 +279,7 @@ Die Seite „Migrationsaktivität“ zeigt die zehn ältesten Dateien an, die ak
 
 
 
+[[generate-a-job-error-report]]
 == Generieren Sie einen Jobfehlerbericht
 
 Sie können einen Fehlerbericht für Jobs mit dem Status *Fehlerhaft* oder für einen zuvor ausgeführten Job generieren. Ein Fehlerbericht kann Ihnen helfen zu verstehen, warum ein Fehler aufgetreten ist.

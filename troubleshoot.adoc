@@ -15,6 +15,7 @@ Wenn Sie bei der Verwendung von NetApp Data Migrator auf Probleme stoßen, könn
 
 
 
+[[smb-mount-failure-when-using-host-name]]
 == SMB-Mount-Fehler bei Verwendung des Hostnamens
 
 Bei der Konfiguration einer Verzeichnismigration kann die SMB-Einbindung fehlschlagen, wenn der Hostname des SMB-Dateiservers als URL angegeben wird. Dies kann auftreten, wenn die virtuelle Maschine (VM) der Steuerungsebene nicht über die korrekte DNS-Konfiguration zur Auflösung des Hostnamens des SMB-Dateiservers verfügt. Der Fehler bei der Einbindung kann mit einer Fehlermeldung ähnlich wie  `mount failed: Resource temporarily unavailable` erscheinen.
@@ -37,6 +38,7 @@ Nach dem Wechsel zur IP-Adresse sollte der Mount-Vorgang erfolgreich sein.
 
 
 
+[[troubleshoot-application-access]]
 == Fehlerbehebung beim Anwendungszugriff
 
 Alle Zugangsdaten werden in OpenBao verwaltet.
@@ -67,6 +69,7 @@ Schlüssel: POSTGRES_DMADMIN_USER und POSTGRES_DMADMIN_PASSWORD
 
 
 
+[[use-the-kubectl-reference-commands]]
 == Verwenden Sie die "kubectl"-Referenzbefehle
 
 * Um die Pods im datamigrator-Namespace zu erhalten:
@@ -103,6 +106,7 @@ kubectl get pods -n <NAMESPACE>
 
 
 
+[[unseal-openbao]]
 == Entsiegeln OpenBao
 
 Sollten Sie auf ein Problem stoßen, bei dem OpenBao versiegelt ist, befolgen Sie diese Schritte, um die Versiegelung aufzuheben.
@@ -123,6 +127,7 @@ kubectl exec openbao-2 -n openbao -- bao operator unseal $OPENBAO_UNSEAL_KEY
 
 
 
+[[troubleshoot-azure-vm-access]]
 == Beheben von Problemen beim Zugriff auf Azure-VMs
 
 Sie sollten Ihre Azure-VM erfolgreich erstellen und sich damit verbinden können. Falls Probleme auftreten, starten Sie Ihre virtuelle Maschine neu oder setzen Sie Ihre SSH-Konfiguration zurück.
@@ -157,6 +162,7 @@ Beachten Sie zunächst die Anweisungen in diesem link:https://learn.microsoft.co
 
 
 
+[[windows-worker-fails-to-switch-user-on-smb-file-server]]
 == Windows-Worker kann auf dem SMB-Dateiserver nicht den Benutzer wechseln
 
 Wenn ein Windows-Mitarbeiter versucht, mit anderen Anmeldeinformationen als denen, die zuvor für denselben Dateiserver verwendet wurden, eine Verbindung zu einem SMB-Dateiserver herzustellen, kann die folgende Fehlermeldung erscheinen:

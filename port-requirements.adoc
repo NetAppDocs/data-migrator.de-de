@@ -15,6 +15,7 @@ Sie müssen sicherstellen, dass bestimmte TCP-Ports geöffnet sind, um die Kommu
 
 
 
+[[control-plane-ports]]
 == Steuerungsebenen-Ports
 
 [cols="1,1,1,1a"]
@@ -53,6 +54,7 @@ Steuerungsebene
 |===
 
 
+[[worker-ports]]
 == Worker-Ports
 
 [cols="1,1,1,1a"]

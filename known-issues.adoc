@@ -15,10 +15,12 @@ Bekannte Probleme beschreiben Fehler, die die erfolgreiche Nutzung dieser Produk
 
 
 
+[[configuration]]
 == Konfiguration
 
 
 
+[[access-permission-mismatch-when-using-sid-mapping]]
 === Zugriffsberechtigungskonflikt bei Verwendung der SID-Zuordnung
 
 NetApp Data Migrator könnte einen `Missing ACE in target` Fehler melden, wenn die SID-Zuordnung verwendet wird. Dieser Fehler weist auf eine Diskrepanz der Zugriffsberechtigungen zwischen Quell- und Zielsystem hin, da die SID-Zuordnung nicht auf der Root-Ebene durchgeführt wurde.
@@ -59,6 +61,7 @@ rootdomain\user2
 ====
 
 
+[[bulk-migration-limitation-for-same-level-directories]]
 === Beschränkung der Massenmigration für Verzeichnisse derselben Ebene
 
 Bei Verwendung der Funktion „Massenmigration“ können Sie nicht mehrere Migrationsaufträge für Verzeichnisse erstellen, die sich in der Quell- und Zielverzeichnishierarchie auf derselben Ebene befinden. Dies betrifft beispielsweise gleichrangige Ordner in derselben Freigabeoperation für Quelle und Ziel. Der Versuch, solche Verzeichnisse in eine einzelne Massenmigrationskonfiguration einzubeziehen, führt zum Fehlschlagen der Auftragserstellung.
@@ -68,6 +71,7 @@ Erstellen Sie Migrationsaufträge nacheinander für Verzeichnisse, die sich auf 
 
 
 
+[[directory-level-migration-inherited-permission-stamping]]
 === Verzeichnisbasierte Migration mit Übernahme der Berechtigungsstempelung
 
 Bei Migrationen auf Verzeichnisebene werden die geerbten Berechtigungen eines ausgewählten Stammverzeichnisses nicht auf das Zielverzeichnis übertragen. Da NetApp Data Migrator die geerbten Berechtigungen für das Stammverzeichnis nicht anwendet, erhalten auch Unterverzeichnisse und Dateien, die auf Vererbung basieren, diese geerbten Berechtigungen nicht.
@@ -79,6 +83,7 @@ Nach Abschluss der Migration müssen die geerbten Berechtigungen für das Stammv
 
 
 
+[[validation-of-manual-upload-of-uid-and-gid-mapping-in-nfs]]
 === Validierung des manuellen Uploads der UID- und GID-Zuordnung in NFS
 
 Während NFS-Migrationen, wenn die CSV-Datei mit der UID- und GID-Zuordnung numerische Benutzer-IDs oder Gruppen-IDs enthält, die auf dem Zielsystem nicht existieren, übernimmt NetApp Data Migrator diese Werte unverändert. NetApp Data Migrator prüft nicht, ob die angegebene UID oder GID auf dem Zielsystem existiert, und gibt keine Fehlermeldung oder Warnung in der Benutzeroberfläche aus. Dies kann dazu führen, dass Dateien mit falschen Besitzverhältnissen migriert werden. Sie müssen die korrekte UID- und GID-Zuordnung angeben.
@@ -88,6 +93,7 @@ Stellen Sie vor Beginn der Migration sicher, dass alle in der Mapping-CSV-Datei 
 
 
 
+[[migration-precheck-displays-false-insufficient-space-warning]]
 === Die Migrationsvorprüfung zeigt fälschlicherweise eine Warnung wegen unzureichendem Speicherplatz an.
 
 Während der Vorabprüfungen der Migration kann die folgende Warnung angezeigt werden, selbst wenn am Ziel ausreichend Speicherplatz vorhanden ist:
@@ -108,10 +114,12 @@ Führen Sie die Erkennung vor einem Migrationslauf durch. Dadurch wird sicherges
 
 
 
+[[reporting]]
 == Berichterstattung
 
 
 
+[[excel-displays-incorrect-permissions-in-coc-report-file]]
 === Excel zeigt falsche Berechtigungen in der COC-Berichtsdatei an
 
 Beim Öffnen der CSV-Datei des Chain-of-Custody-Berichts (CoC) in Microsoft Excel werden einige Datei- oder Ordnerberechtigungen möglicherweise als #NAME? angezeigt, zum Beispiel -rwxrwxrwx, statt der tatsächlichen Werte.
@@ -129,6 +137,7 @@ Um die korrekten Datei- und Ordnerberechtigungen anzuzeigen, öffnen Sie die CSV
 
 
 
+[[no-error-message-when-bulk-discovery-job-fails-due-to-network-issues]]
 === Es wird keine Fehlermeldung angezeigt, wenn der Massenermittlungsauftrag aufgrund von Netzwerkproblemen fehlschlägt.
 
 Wenn der Host- oder Zielserver während eines Massenermittlungsauftrags ausfällt, zeigt NetApp Data Migrator möglicherweise keine Fehlermeldung an. Dies kann den Eindruck erwecken, dass der Auftrag weiterhin normal ausgeführt wird.
@@ -172,6 +181,7 @@ ifup <interface_name>
 
 
 
+[[unable-to-switch-user-on-windows-worker]]
 === Benutzerwechsel auf Windows-Worker nicht möglich
 
 Der Wechsel zu einem anderen Benutzerkonto auf dem Windows-Arbeitsrechner kann aufgrund bestehender Netzwerkverbindungen fehlschlagen. Dies kann den Zugriff auf den Dateiserver verhindern.
@@ -193,10 +203,12 @@ net use <IP address> /delete
 
 
 
+[[validation]]
 == Validierung
 
 
 
+[[file-sizes-might-differ-after-migration-even-if-counts-match]]
 === Dateigrößen können sich nach der Migration unterscheiden, selbst wenn die Anzahl übereinstimmt
 
 Nach Abschluss der Datenmigration stimmt die Gesamtzahl der Dateien, aber einige Dateien können eine andere Größe im Vergleich zur ursprünglichen Quelle haben. Dies kann passieren, wenn das Netzwerk unterbrochen wird oder wenn es während der Dateiübertragung Probleme mit dem Server gibt.
@@ -208,10 +220,12 @@ Nach Abschluss der Datenmigration stimmt die Gesamtzahl der Dateien, aber einige
 
 
 
+[[workflows]]
 == Arbeitsabläufe
 
 
 
+[[job-paused-or-stalled-for-more-than-20-minutes]]
 === Auftrag wurde für mehr als 20 Minuten pausiert oder angehalten
 
 Ein Eingreifen kann erforderlich sein, wenn Netzwerkverbindungsprobleme, Probleme mit der Stabilität des Quell- oder Zielvolumes oder beides auftreten. Der Auftrag kann sich im Status „Angehalten“ oder „Wird ausgeführt“ befinden, ohne dass sichtbare Fortschritte erkennbar sind. Dies kann passieren, wenn die Quell- oder Zieldienste ausfallen oder der Worker-Dienst eine Ausfallzeit hat.
@@ -238,6 +252,7 @@ Sollte das Problem weiterhin bestehen, starten Sie die Worker-VM neu.
 
 
 
+[[job-run-status-is-confusing-when-errors-occur]]
 === Der Status der Jobausführung ist bei Fehlern verwirrend
 
 Bei einigen Migrationsaufträgen treten Fehler auf und es wird der Status „Abgeschlossen“ oder „Fehlerhaft“ angezeigt. Dies kann bei der Interpretation des Status des Migrationsauftrags zu Verwirrung führen.

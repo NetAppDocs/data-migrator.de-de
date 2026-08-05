@@ -21,6 +21,7 @@ Sie können eine Steuerungsebene, einen Linux-Worker oder einen Windows-Worker i
 
 
 
+[[step-1-upload-the-upgrade-bundle]]
 == Schritt 1: Laden Sie das Upgrade-Paket hoch
 
 Laden Sie das Upgrade-Paket aus Ihrem lokalen Verzeichnis hoch.
@@ -39,6 +40,7 @@ Warten Sie, bis die Meldung erscheint, die bestätigt, dass der Upload und die V
 
 
 
+[[step-2-upgrade-the-control-plane-and-workers]]
 == Schritt 2: Aktualisieren Sie die Steuerungsebene und die Worker
 
 Aktualisieren Sie die Steuerungsebene, gefolgt vom Linux-Worker oder Windows-Worker.
@@ -78,6 +80,8 @@ ExecutionPolicy Bypass -File C:\datamigrator\staging\<version>\upgrade.ps1 -Vers
 
 
 
+[[step-3-view-logs-and-troubleshoot]]
+[[view-logs]]
 == Schritt 3: Protokolle anzeigen und Fehlerbehebung
 
 Zeigen Sie die Protokolle der virtuellen Maschine an, um die Fehlerbehebung bei Problemen zu unterstützen, die während des Upgrades auftreten.
