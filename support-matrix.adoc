@@ -86,6 +86,11 @@ NetApp Data Migrator migriert Objekte und Verknüpfungen als separate Dateien.
 | Beschreibung | Nicht unterstützte Funktion 
 
 
+| Cross Active Directory Migration  a| 
+Domänenübergreifende Migrationen zwischen Quell- und Zielsystemen, die verschiedenen Active Directory Domänen angehören
+
+
+
 | Berechtigungs- und Auditverwaltung  a| 
 Systemzugriffskontrollliste (SACL)
 

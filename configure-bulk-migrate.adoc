@@ -60,6 +60,7 @@ NetApp Data Migrator verhindert die Auswahl einer Zuordnung, die eine über- ode
 
 Auf der Seite *Optionen* können Sie verschiedene Einstellungen auswählen, um Ihren Bulk Migrate-Job Ihren Bedürfnissen entsprechend anzupassen.
 
+[[inherited-permissions]]
 [cols="1,2a"]
 |===
 | Option | Beschreibung 

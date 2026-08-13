@@ -29,12 +29,6 @@ sidebar:
       url: "/decide-to-use-data-migrator.html"
     - title: Schnellstart
       url: "/quick-start.html"
-    - title: Netzwerkanforderungen
-      entries:
-      - title: Netzwerkzugriff überprüfen
-        url: "/networking-requirements.html"
-      - title: Port-Anforderungen
-        url: "/port-requirements.html"
   - title: Installieren, einrichten und aktualisieren
     entries:
     - title: Erfahren Sie mehr über die Installation von NetApp Data Migrator
@@ -47,6 +41,12 @@ sidebar:
       url: "/create-control-plane-and-worker-vms.html"
     - title: Validieren Sie die Steuerungsebene und die Worker-Bereitstellung
       url: "/validate-control-plane-vm.html"
+    - title: Netzwerkanforderungen
+      entries:
+      - title: Zugriff für Steuerungsebene und Worker-Knoten konfigurieren
+        url: "/configure-access-for-control-plane-and-worker-nodes.html"
+      - title: Port-Anforderungen
+        url: "/port-requirements.html"
     - title: Zugriff auf die NetApp Data Migrator-Benutzeroberfläche
       url: "/access-data-migrator-ui.html"
     - title: Konfigurieren Sie NetApp Data Migrator

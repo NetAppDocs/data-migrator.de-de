@@ -101,5 +101,5 @@ Erfahren Sie mehr über link:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide
 Nachdem Sie gelernt haben, wie Sie die Steuerungsebene und die Worker-VMs erstellen, können Sie Folgendes tun:
 
 * Optional link:validate-control-plane-vm.html["Validierung der Control Plane-VM"]
-* link:access-data-migrator-ui.html["Greifen Sie auf die NetApp Data Migrator-Benutzeroberfläche zu und stellen Sie eine Verbindung zur Steuerungsebene und den Workern her."]
+* link:configure-access-for-control-plane-and-worker-nodes.html["Zugriff für Steuerungsebene und Worker-Knoten konfigurieren"]
 

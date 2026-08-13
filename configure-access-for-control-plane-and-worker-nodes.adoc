@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: networking-requirements.html 
+permalink: configure-access-for-control-plane-and-worker-nodes.html 
 keywords: networking requirements, TCP, UDP, control plane, worker, communication 
 summary: Netzwerkanforderungen für NetApp Data Migrator, einschließlich der benötigten TCP- und UDP-Ports für die Steuerungsebene und die Worker-Kommunikation. 
 ---
-= Überprüfen Sie den NFS- und SMB-Netzwerkzugriff in NetApp Data Migrator
+= Zugriff für Steuerungsebene und Worker-Knoten in NetApp Data Migrator konfigurieren
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
@@ -15,8 +15,8 @@ Sie müssen sicherstellen, dass die IP-Adresse und das Subnetz sowohl für die S
 
 
 
-[[verify-nfs-access]]
-== NFS-Zugriff überprüfen
+[[configure-nfs-access]]
+== NFS-Zugriff konfigurieren
 
 Für NFS benötigen die Steuerungsebene und die Worker-Knoten die Berechtigung, als Root-Clients auf das Speichersystem zuzugreifen.
 
@@ -33,16 +33,29 @@ ls -la /mnt/test
 
 
 
-[[verify-smb-access]]
-== SMB-Zugriff überprüfen
+[[configure-smb-access]]
+== SMB-Zugriff konfigurieren
 
 Für den SMB-Zugriff benötigen die Steuerungsebene und die Worker-Knoten die Berechtigung, mit den SMB-Anmeldeinformationen auf das Speichersystem zuzugreifen. Der SMB-Benutzer muss Mitglied der Gruppen „Backup-Operatoren“ und „Administratoren“ sein.
 
-.Schritt
+.Schritte
 . Führen Sie eine manuelle Einbindung von einem Worker-Knoten aus durch, um die Verfügbarkeit des Volumes zu überprüfen:
 +
 [source, cli]
 ----
 net use Z: \\<storage-ip>\<share> /user:<domain>\<username> <password>
 ----
+. Die Windows Worker-VM wird einer Domäne hinzugefügt.
++
+Active Directory verwendet DNS zur Domänencontroller-Erkennung. Vor dem Versuch, einer Domäne beizutreten, sollte überprüft werden, ob das System den Domänencontroller finden kann und die Windows-Worker-VM für die Nutzung des Active Directory DNS-Servers konfiguriert ist.
 
++
+Nach der DNS-Konfiguration den link:https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/join-computer-to-domain?tabs=cmd&pivots=windows-server-2025["Microsoft Dokumentation"^]Anweisungen folgen, um die Windows Worker VM der Domäne hinzuzufügen.
+
++
+Wenn während des Domänenbeitrittsprozesses Probleme auftreten, finden sich weitere Informationen in der link:https://techcommunity.microsoft.com/blog/askds/domain-join-and-basic-troubleshooting/4405860["Dokumentation zur Fehlerbehebung beim Microsoft Domain Join"^].
+
+
+
+.Was kommt als Nächstes?
+Nach der Konfiguration des Netzwerkzugriffs empfiehlt sich eine Überprüfung des link:port-requirements.html["Portanforderungen"].

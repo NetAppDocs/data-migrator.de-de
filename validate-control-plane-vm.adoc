@@ -46,4 +46,4 @@ kubectl get pods -n datamigrator
 
 
 .Was kommt als Nächstes?
-Nachdem Sie gelernt haben, wie man die Control-Plane-VM validiert, können Sie link:access-data-migrator-ui.html["Zugriff auf die NetApp Data Migrator UI"].
+Nach der Validierung der Steuerungsebene und der Worker-Bereitstellung kann link:configure-access-for-control-plane-and-worker-nodes.html["Zugriff für Steuerungsebene und Worker-Knoten konfigurieren"] fortgefahren werden.

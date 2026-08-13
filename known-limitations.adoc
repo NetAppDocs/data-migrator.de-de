@@ -23,7 +23,7 @@ Die Einschränkungen und Funktionen der NFS- und SMB-Migration, die mit dieser V
 | Beschreibung | NFS | SMB 
 
 
-| Anzahl der Exportpfade, die gleichzeitig ausgeführt werden können | 4  a| 
+| Anzahl der parallelen Jobs | 4  a| 
 2
 
 

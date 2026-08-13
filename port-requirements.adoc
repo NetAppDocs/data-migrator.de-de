@@ -23,33 +23,40 @@ Sie müssen sicherstellen, dass bestimmte TCP-Ports geöffnet sind, um die Kommu
 | Service | TCP-Port | Aus | Zu 
 
 
-| Temporal Server | 7233 oder 7234 | Arbeiter und Kunden  a| 
+| Temporal | 7233 oder 7234, 8080 | Mitarbeiter und Clients (Browser oder externe Clients)  a| 
 Steuerungsebene
 
 
 
-| Temporale Benutzeroberfläche | 8080 | Standardport, falls aktiviert  a| 
+| Redis | 6379 | Mitarbeiter und Clients (Browser oder externe Clients)  a| 
 Steuerungsebene
 
 
 
-| PostgreSQL (Temporaldatenbank) | 5432 | Zeitliche Dienste (von der Steuerungsebene)  a| 
-Steuerungsebene
-
-
-
-| Redis | 6379 | Worker- oder Control-Plane-Dienste  a| 
-Steuerungsebene
-
-
-
-| API- oder UI-Einspeisepunkt (Ihre Anwendung) | 80 oder 443 | Browser oder ein externer Client  a| 
+| NDM Anwendung | 443 | Mitarbeiter und Clients (Browser oder externe Clients)  a| 
 Steuerungsebene
 
 
 
 | Grafana | 3000 | Browser  a| 
 Steuerungsebene
+
+
+
+| Isilon Management Konsole | 443, 8080 | Steuerungsebene  a| 
+Isilon Management Konsole
+
+
+
+| Ausgehend an Speicher | 2049 | Steuerungsebene  a| 
+NFS-Server
+
+*Hinweis*: Geben Sie TCP- oder UDP-Port 111 an, wenn Sie den Portmapper-Dienst für Remote Procedure Calls benötigen.
+
+
+
+| Ausgehend an Speicher | 445 | Steuerungsebene  a| 
+SMB-Server
 
 |===
 
@@ -60,21 +67,6 @@ Steuerungsebene
 [cols="1,1,1,1a"]
 |===
 | Service | TCP-Port | Aus | Zu 
-
-
-| Ausgehend zur Steuerungsebene | 7233 | Dienste in der Steuerungsebene  a| 
-Temporales Frontend
-
-
-
-| Ausgehend zur Steuerungsebene | 6379 | Dienste in der Steuerungsebene  a| 
-Redis
-
-
-
-| Ausgehend zur Steuerungsebene | 80 oder 443 | Browser  a| 
-API oder Benutzeroberfläche (wenn Sie es so nennen)
-
 
 
 | Ausgehend an Speicher | 2049 | Worker  a| 
@@ -88,3 +80,5 @@ NFS-Server
 SMB-Server
 
 |===
+.Was kommt als Nächstes?
+Nach Prüfung der Port-Anforderungen können Sie link:access-data-migrator-ui.html["Zugriff auf die NetApp Data Migrator UI"].
