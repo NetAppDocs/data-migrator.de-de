@@ -25,7 +25,7 @@ NetApp Data Migrator unterstützt die Dateiübertragungsprotokolle NFS und SMB. 
 
 
 [role="quick-margin-para"]
-Überprüfen Sie link:decide-to-use-data-migrator.html["Entscheiden Sie, ob Sie NetApp Data Migrator verwenden möchten."] und die link:configure-access-for-control-plane-and-worker-nodes.html["Netzwerkanforderungen"].
+Überprüfung link:decide-to-use-data-migrator.html["Entscheiden Sie, ob Sie NetApp Data Migrator verwenden möchten."].
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"]Installieren und einrichten
 [role="quick-margin-para"]
